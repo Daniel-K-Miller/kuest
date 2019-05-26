@@ -1,24 +1,48 @@
 <template>
   <div>
     <form @submit.prevent="submit">
-      Character Name:
-      <input type="text" name="playerName" required>
-      <div id="race-container">
-        <label>
-          <input type="radio" name="race" value="gruvat" required>
-          <img src="@/assets/emblems/gruvatEmblem.svg">
-          <h3>Gruvat</h3>
-        </label>
-        <label>
-          <input type="radio" name="race" value="tiekkot">
-          <img src="@/assets/emblems/tiekkotEmblem.svg">
-          <h3>Tiekkot</h3>
-        </label>
-        <label>
-          <input type="radio" name="race" value="zhial">
-          <img src="@/assets/emblems/zhialEmblem.svg">
-          <h3>Zhial</h3>
-        </label>
+      <div id="name">
+        <h2>Character Name:</h2>
+        <input type="text" name="playerName" maxlength="12" v-model="playerData.name" required>
+      </div>
+      <div id="species-container">
+        <h2>Select Species</h2>
+        <div id="labels-container">
+          <label>
+            <input
+              type="radio"
+              name="race"
+              value="Gruvat"
+              v-model="playerData.race"
+              @click="toggleHighlight"
+              required
+            >
+            <img src="@/assets/emblems/gruvatEmblem.svg" draggable="false">
+            <h3 :class="[ highlighted === `Gruvat` ? `white-text` : ``]">Gruvat</h3>
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="race"
+              value="Tiekkot"
+              v-model="playerData.race"
+              @click="toggleHighlight"
+            >
+            <img src="@/assets/emblems/tiekkotEmblem.svg" draggable="false">
+            <h3 :class="[ highlighted === `Tiekkot` ? `white-text` : ``]">Tiekkot</h3>
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="race"
+              value="Zhial"
+              v-model="playerData.race"
+              @click="toggleHighlight"
+            >
+            <img src="@/assets/emblems/zhialEmblem.svg" draggable="false">
+            <h3 :class="[ highlighted === `Zhial` ? `white-text` : ``]">Zhial</h3>
+          </label>
+        </div>
       </div>
     </form>
   </div>
@@ -29,9 +53,14 @@ export default {
   props: {
     playerData: Object
   },
+  data() {
+    return {
+      highlighted: "hello"
+    };
+  },
   methods: {
-    submit() {
-      console.log("submit");
+    toggleHighlight(event) {
+      this.highlighted = event.target.value;
     }
   }
 };
@@ -58,21 +87,24 @@ form img {
   width: 150px;
   border-radius: 10px;
   user-select: none;
-  margin: 2em 1em;
 }
 label {
-  background-color: transparent;
+  background-color: $backgroundColor;
+  margin: 10px;
+  border-radius: 10px;
 }
-#race-container {
+#labels-container {
   display: flex;
   background-color: $inactiveLinkColor;
   width: max-content;
   height: max-content;
   border-radius: 10px;
   margin: 0 auto;
-  h2 {
-    background-color: $inactiveLinkColor;
-    color: $backgroundColor;
+  h3 {
+    border-radius: 5px;
   }
+}
+.white-text {
+  color: white;
 }
 </style>
