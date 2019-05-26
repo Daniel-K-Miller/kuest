@@ -1,18 +1,24 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <HomeContent @changeInitiated="changeInitiated"/>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import HomeContent from "@/components/HomeContent.vue";
 
 export default {
   name: "home",
   components: {
-    HelloWorld
+    HomeContent
+  },
+  props: {
+    initiated: Boolean
+  },
+  methods: {
+    changeInitiated() {
+      this.$emit("changeInitiated");
+    }
   }
 };
 </script>
