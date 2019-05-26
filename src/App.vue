@@ -3,19 +3,28 @@
     <img id="kuest-title" src="@/assets/title/title.svg">
 
     <!-- Starting Screen -->
-    <LandingContent :initiated="initiated" @toggleInitiated="toggleInitiated"/>
+    <LandingContent
+      v-if="initiated === false"
+      :initiated="initiated"
+      @toggleInitiated="toggleInitiated"
+    />
+    <!-- Character Creation -->
+    <CharacterCreation v-if="initiated === true" :playerData="player"/>
   </div>
 </template>
 
 <script>
 import LandingContent from "@/components/LandingContent.vue";
+import CharacterCreation from "@/components/CharacterCreation.vue";
 export default {
   components: {
-    LandingContent
+    LandingContent,
+    CharacterCreation
   },
   data() {
     return {
-      initiated: false
+      initiated: false,
+      player: { name: "", race: "", weapon: "" }
     };
   },
   methods: {
@@ -38,6 +47,8 @@ export default {
 }
 * {
   background-color: $backgroundColor;
+  margin: 0;
+  padding: 0;
 }
 #nav {
   padding: 30px;

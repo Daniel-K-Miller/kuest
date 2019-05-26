@@ -1,6 +1,6 @@
 <template>
   <!-- Starting Screen -->
-  <div v-if="initiated===false">
+  <div>
     <div id="nav">
       <router-link to="/">Home</router-link>|
       <router-link to="/about">About</router-link>
