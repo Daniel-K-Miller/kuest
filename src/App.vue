@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img id="kuest-title" src="@/assets/title/title.svg">
+    <img id="kuest-title" src="@/assets/title/title.svg" draggable="false">
 
     <!-- Starting Screen -->
     <LandingContent
@@ -46,9 +46,11 @@ export default {
   color: $inactiveLinkColor;
 }
 * {
-  background-color: $backgroundColor;
   margin: 0;
   padding: 0;
+}
+body {
+  background-color: $backgroundColor;
 }
 #nav {
   padding: 30px;
