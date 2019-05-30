@@ -1,53 +1,54 @@
 <template>
   <div id="main-container">
-    <form @submit.prevent="submit">
+    <form @submit.prevent="handleSubmit">
       <div id="name-container" class="divide">
         <h2>Character Name:</h2>
         <input type="text" name="playerName" maxlength="12" v-model="playerData.name" required>
+        <button id="random-btn" type="button" @click="handleRandom"></button>
       </div>
       <div id="species-container" class="divide">
         <h2>Select Species</h2>
         <div class="labels-container">
-          <label>
+          <label :class="[ playerData.species === `Gruvat` ? `selected` : ``]">
             <input
               type="radio"
-              name="race"
+              name="species"
               value="Gruvat"
-              v-model="playerData.race"
+              v-model="playerData.species"
               @click="toggleHighlight"
               required
             >
             <img src="@/assets/emblems/gruvatEmblem.svg" draggable="false">
-            <h3 :class="[ highlightedRace === `Gruvat` ? `white-text` : ``]">Gruvat</h3>
+            <h3>Gruvat</h3>
           </label>
-          <label>
+          <label :class="[ playerData.species === `Tiekkot` ? `selected` : ``]">
             <input
               type="radio"
-              name="race"
+              name="species"
               value="Tiekkot"
-              v-model="playerData.race"
+              v-model="playerData.species"
               @click="toggleHighlight"
             >
             <img src="@/assets/emblems/tiekkotEmblem.svg" draggable="false">
-            <h3 :class="[ highlightedRace === `Tiekkot` ? `white-text` : ``]">Tiekkot</h3>
+            <h3>Tiekkot</h3>
           </label>
-          <label>
+          <label :class="[ playerData.species === `Zhial` ? `selected` : ``]">
             <input
               type="radio"
-              name="race"
+              name="species"
               value="Zhial"
-              v-model="playerData.race"
+              v-model="playerData.species"
               @click="toggleHighlight"
             >
             <img src="@/assets/emblems/zhialEmblem.svg" draggable="false">
-            <h3 :class="[ highlightedRace === `Zhial` ? `white-text` : ``]">Zhial</h3>
+            <h3>Zhial</h3>
           </label>
         </div>
       </div>
       <div id="weapon-container" class="divide">
         <h2>Select Weapon</h2>
         <div class="labels-container">
-          <label>
+          <label :class="[ playerData.weapon === `Lepparrin's Lowertooth` ? `selected` : ``]">
             <input
               type="radio"
               name="weapon"
@@ -57,22 +58,9 @@
               required
             >
             <img src="@/assets/weapons/weapon1.svg" draggable="false">
-            <h3
-              :class="[ highlightedWeapon === `Lepparrin's Lowertooth` ? `white-text` : ``]"
-            >Lepparrin's Lowertooth</h3>
+            <h3>Lepparrin's Lowertooth</h3>
           </label>
-          <label>
-            <input
-              type="radio"
-              name="weapon"
-              value="Eiliin Tears"
-              v-model="playerData.weapon"
-              @click="toggleHighlight"
-            >
-            <img src="@/assets/weapons/weapon2.svg" draggable="false">
-            <h3 :class="[ highlightedWeapon === `Eiliin Tears` ? `white-text` : ``]">Eiliin Tears</h3>
-          </label>
-          <label>
+          <label :class="[ playerData.weapon === `Kurkkuin Rind` ? `selected` : ``]">
             <input
               type="radio"
               name="weapon"
@@ -81,11 +69,22 @@
               @click="toggleHighlight"
             >
             <img src="@/assets/weapons/weapon3.svg" draggable="false">
-            <h3 :class="[ highlightedWeapon === `Kurkkuin Rind` ? `white-text` : ``]">Kurkkuin Rind</h3>
+            <h3>Kurkkuin Rind</h3>
+          </label>
+          <label :class="[ playerData.weapon === `Eiliin Tears` ? `selected` : ``]">
+            <input
+              type="radio"
+              name="weapon"
+              value="Eiliin Tears"
+              v-model="playerData.weapon"
+              @click="toggleHighlight"
+            >
+            <img src="@/assets/weapons/weapon2.svg" draggable="false">
+            <h3>Eiliin Tears</h3>
           </label>
         </div>
       </div>
-      <button id="create-character-button">Create Character</button>
+      <button type="submit" id="create-character-button">Create Character</button>
     </form>
   </div>
 </template>
@@ -97,7 +96,7 @@ export default {
   },
   data() {
     return {
-      highlightedRace: "",
+      highlightedSpecies: "",
       highlightedWeapon: ""
     };
   },
@@ -108,7 +107,7 @@ export default {
         event.target.value === "Tiekkot" ||
         event.target.value === "Zhial"
       ) {
-        this.highlightedRace = event.target.value;
+        this.highlightedSpecies = event.target.value;
       } else if (
         event.target.value === "Lepparrin's Lowertooth" ||
         event.target.value === "Eiliin Tears" ||
@@ -116,6 +115,23 @@ export default {
       ) {
         this.highlightedWeapon = event.target.value;
       }
+    },
+    handleSubmit() {
+      this.playerData.level = 1;
+    },
+    handleRandom() {
+      const names = ["Aeal", "Jasu", "Binksia"];
+      const species = ["Gruvat", "Tiekkot", "Zhial"];
+      const weapons = [
+        "Lepparrin's Lowertooth",
+        "Eiliin Tears",
+        "Kurkkuin Rind"
+      ];
+      this.playerData.name = names[Math.floor(Math.random() * names.length)];
+      this.playerData.species =
+        species[Math.floor(Math.random() * species.length)];
+      this.playerData.weapon =
+        weapons[Math.floor(Math.random() * weapons.length)];
     }
   }
 };
@@ -159,6 +175,7 @@ label {
     border-radius: 10px;
     user-select: none;
     background: $linkColor;
+    opacity: 0.1;
   }
   h3 {
     font-size: 1.2em;
@@ -220,8 +237,23 @@ label {
   border-radius: 5px;
   margin-top: 20px;
 }
+#random-btn {
+  background-image: url("../assets/random.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 75%;
+  border: none;
+  width: 30px;
+  height: 30px;
+  background-color: $linkColor;
+}
 
-.white-text {
-  color: white;
+.selected {
+  h3 {
+    color: white;
+  }
+  img {
+    opacity: 1;
+  }
 }
 </style>

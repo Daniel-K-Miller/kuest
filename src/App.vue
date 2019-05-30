@@ -9,7 +9,7 @@
       @toggleInitiated="toggleInitiated"
     />
     <!-- Character Creation -->
-    <CharacterCreation v-if="initiated === true" :playerData="player"/>
+    <CharacterCreation v-if="initiated === true && player.level === 0" :playerData="player"/>
   </div>
 </template>
 
@@ -24,7 +24,7 @@ export default {
   data() {
     return {
       initiated: false,
-      player: { name: "", race: "", weapon: "" }
+      player: { name: "", species: "", weapon: "", level: 0 }
     };
   },
   methods: {
