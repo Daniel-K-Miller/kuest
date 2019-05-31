@@ -96,8 +96,7 @@ export default {
   },
   data() {
     return {
-      highlightedSpecies: "",
-      highlightedWeapon: ""
+      prevRandomValue: {}
     };
   },
   methods: {
@@ -127,11 +126,32 @@ export default {
         "Eiliin Tears",
         "Kurkkuin Rind"
       ];
-      this.playerData.name = names[Math.floor(Math.random() * names.length)];
-      this.playerData.species =
-        species[Math.floor(Math.random() * species.length)];
-      this.playerData.weapon =
-        weapons[Math.floor(Math.random() * weapons.length)];
+
+      // current iteration of playerData passed from getRandomValues()
+      let newPlayerData = {};
+
+      let getRandomValues = () => {
+        Object.assign(newPlayerData, {
+          name: names[Math.floor(Math.random() * names.length)],
+          species: species[Math.floor(Math.random() * species.length)],
+          weapon: weapons[Math.floor(Math.random() * weapons.length)]
+        });
+      };
+      getRandomValues();
+
+      // while loop to catch if an identical set of random values exist in the previous object of playerData and this current iteration
+      // therefore retriggering getting random values until a non-identical copy is made. Prevent random button being useless.
+
+      while (
+        this.playerData.name === newPlayerData.name &&
+        this.playerData.species === newPlayerData.species &&
+        this.playerData.weapon === newPlayerData.weapon
+      ) {
+        getRandomValues();
+      }
+      this.playerData.name = newPlayerData.name;
+      this.playerData.species = newPlayerData.species;
+      this.playerData.weapon = newPlayerData.weapon;
     }
   }
 };
