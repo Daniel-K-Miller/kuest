@@ -117,6 +117,42 @@ export default {
     },
     handleSubmit() {
       this.playerData.level = 1;
+      // sending species stats to playerData within App.js
+      switch (this.playerData.species) {
+        case "Gruvat":
+          this.playerData.attributes.brute = 50;
+          this.playerData.attributes.resistance = 30;
+          this.playerData.attributes.life = 10;
+          break;
+        case "Tiekkot":
+          this.playerData.attributes.brute = 30;
+          this.playerData.attributes.resistance = 50;
+          this.playerData.attributes.life = 10;
+          break;
+        case "Zhial":
+          this.playerData.attributes.brute = 10;
+          this.playerData.attributes.resistance = 30;
+          this.playerData.attributes.life = 50;
+          break;
+      }
+      // sending weapon stats to playerData within App.js
+      switch (this.playerData.weapon) {
+        case "Lepparrin's Lowertooth":
+          this.playerData.weaponAttributes.damage = 30;
+          this.playerData.weaponAttributes.criticalHitChance = 50;
+          this.playerData.weaponAttributes.accuracy = 10;
+          break;
+        case "Kurkkuin Rind":
+          this.playerData.weaponAttributes.damage = 50;
+          this.playerData.weaponAttributes.criticalHitChance = 10;
+          this.playerData.weaponAttributes.accuracy = 30;
+          break;
+        case "Eiliin Tears":
+          this.playerData.weaponAttributes.damage = 10;
+          this.playerData.weaponAttributes.criticalHitChance = 30;
+          this.playerData.weaponAttributes.accuracy = 50;
+          break;
+      }
     },
     handleRandom() {
       const names = ["Aeal", "Jasu", "Binksia"];

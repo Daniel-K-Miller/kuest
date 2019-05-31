@@ -24,7 +24,14 @@ export default {
   data() {
     return {
       initiated: false,
-      player: { name: "", species: "", weapon: "", level: 0 }
+      player: {
+        name: "",
+        species: "",
+        weapon: "",
+        level: 0,
+        attributes: { life: 0, brute: 0, resistance: 0 },
+        weaponAttributes: { damage: 0, criticalHitChance: 0, accuracy: 0 }
+      }
     };
   },
   methods: {
