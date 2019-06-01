@@ -126,7 +126,6 @@
 </template>
 
 <script>
-import uuidv4 from "uuid";
 export default {
   props: {
     playerData: Object,

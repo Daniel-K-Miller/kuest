@@ -1,11 +1,19 @@
 <template>
-  <div class="hello">
-    <h1>Your journey begins here...</h1>
-    <p>
-      For a quick-start guide and more information about Kuest check out the
+  <div class="home-container">
+    <span id="slogan-container">
+      <h1>Your journey begins here...</h1>
+      <p>How far can you progress?</p>
+    </span>
+    <p id="referral">
+      For a quick-start guide and more information about Kuest visit the
       <router-link to="/about">about</router-link>&nbsp;section
     </p>
-    <button @click="change" id="start-button">Play</button>
+    <div>
+      <img src="@/assets/models/gruvat.png" draggable="false">
+      <img src="@/assets/models/tiekkot.png" draggable="false">
+      <img src="@/assets/models/zhial.png" draggable="false">
+    </div>
+    <button @click="change" id="start-btn">Play</button>
   </div>
 </template>
 
@@ -40,10 +48,26 @@ li {
 a {
   color: $linkColor;
 }
-#start-button {
-  background: white;
-  padding: 0.2em 0.7em;
-  border-radius: 5px;
+#referral {
+  margin-top: 20px;
+  color: $inactiveLinkColor;
+}
+#slogan-container {
+  color: $linkColor;
+}
+#start-btn {
+  background-color: $inactiveLinkColor;
+  color: $mainColor;
   font-size: 1.5em;
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+img {
+  width: 150px;
+  background-color: $inactiveLinkColor;
+  padding: 1em;
+  margin: 2em;
 }
 </style>
