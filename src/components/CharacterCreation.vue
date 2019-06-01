@@ -22,7 +22,7 @@
               <li
                 v-for="(item, key) in defaultAttributes.species.Gruvat"
                 :key="`item${key}`"
-              >{{key}}: {{ item }}</li>
+              >{{ key.slice(0, 1).toUpperCase() + key.slice(1) }}: {{ item }}</li>
             </ul>
             <img src="@/assets/emblems/gruvatEmblem.svg" draggable="false">
             <h3>Gruvat</h3>
@@ -39,7 +39,7 @@
               <li
                 v-for="(item, key) in defaultAttributes.species.Tiekkot"
                 :key="`item${key}`"
-              >{{key}}: {{ item }}</li>
+              >{{ key.slice(0, 1).toUpperCase() + key.slice(1) }}: {{ item }}</li>
             </ul>
             <img src="@/assets/emblems/tiekkotEmblem.svg" draggable="false">
             <h3>Tiekkot</h3>
@@ -56,7 +56,7 @@
               <li
                 v-for="(item, key) in defaultAttributes.species.Zhial"
                 :key="`item${key}`"
-              >{{key}}: {{ item }}</li>
+              >{{ key.slice(0, 1).toUpperCase() + key.slice(1) }}: {{ item }}</li>
             </ul>
             <img src="@/assets/emblems/zhialEmblem.svg" draggable="false">
             <h3>Zhial</h3>
@@ -79,7 +79,7 @@
               <li
                 v-for="(item, key) in defaultAttributes.weapons[`Lepparrin's Lowertooth`]"
                 :key="`item${key}`"
-              >{{key}}: {{ item }}</li>
+              >{{ key.slice(0, 1).toUpperCase() + upperCaseText(key.slice(1)) }}: {{ item }}</li>
             </ul>
             <img src="@/assets/weapons/weapon1.svg" draggable="false">
             <h3>Lepparrin's Lowertooth</h3>
@@ -96,7 +96,7 @@
               <li
                 v-for="(item, key) in defaultAttributes.weapons[`Kurkkuin Rind`]"
                 :key="`item${key}`"
-              >{{key}}: {{ item }}</li>
+              >{{ key.slice(0, 1).toUpperCase() + upperCaseText(key.slice(1)) }}: {{ item }}</li>
             </ul>
             <img src="@/assets/weapons/weapon3.svg" draggable="false">
             <h3>Kurkkuin Rind</h3>
@@ -113,7 +113,7 @@
               <li
                 v-for="(item, key) in defaultAttributes.weapons[`Eiliin Tears`]"
                 :key="`item${key}`"
-              >{{key}}: {{ item }}</li>
+              >{{ key.slice(0, 1).toUpperCase() + upperCaseText(key.slice(1)) }}: {{ item }}</li>
             </ul>
             <img src="@/assets/weapons/weapon2.svg" draggable="false">
             <h3>Eiliin Tears</h3>
@@ -134,8 +134,7 @@ export default {
   },
   data() {
     return {
-      prevRandomValue: {},
-      uuid: uuidv4
+      prevRandomValue: {}
     };
   },
   methods: {
@@ -227,6 +226,19 @@ export default {
       this.playerData.name = newPlayerData.name;
       this.playerData.species = newPlayerData.species;
       this.playerData.weapon = newPlayerData.weapon;
+    },
+
+    // checking for a capital leter then after returning true inserting a space before it
+    upperCaseText(string) {
+      let splitString = string.slice(0).split("");
+
+      // i set to 1 to skip first as no need for beginning to need a space before
+      for (let i = 1; i < string.length; i++) {
+        if (splitString[i] === splitString[i].toUpperCase()) {
+          splitString[i - 1] += ` `;
+        }
+      }
+      return splitString.join("");
     }
   }
 };
@@ -266,7 +278,7 @@ label {
   width: 50vw;
   margin: 0 auto;
   img {
-    width: 10vw;
+    width: 8vw;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     user-select: none;
@@ -276,7 +288,7 @@ label {
   }
   h3 {
     font-size: 1.2em;
-    width: 10vw;
+    width: 8vw;
   }
   h2 {
     color: white;
@@ -349,7 +361,7 @@ label {
   text-decoration: none;
   color: $mainColor;
   text-align: center;
-  width: 10vw;
+  width: 1;
   opacity: 0.5;
   font-size: 1em;
 }
