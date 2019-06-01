@@ -9,7 +9,11 @@
       @toggleInitiated="toggleInitiated"
     />
     <!-- Character Creation -->
-    <CharacterCreation v-if="initiated === true && player.level === 0" :playerData="player"/>
+    <CharacterCreation
+      v-if="initiated === true && player.level === 0"
+      :playerData="player"
+      :defaultAttributes="defaultAttributes"
+    />
   </div>
 </template>
 
@@ -29,8 +33,26 @@ export default {
         species: "",
         weapon: "",
         level: 0,
-        attributes: { life: 0, brute: 0, resistance: 0 },
-        weaponAttributes: { damage: 0, criticalHitChance: 0, accuracy: 0 }
+        attributes: {
+          species: { life: 0, brute: 0, resistance: 0 },
+          weapon: { damage: 0, criticalHitChance: 0, accuracy: 0 }
+        }
+      },
+      defaultAttributes: {
+        species: {
+          Gruvat: { brute: 50, resistance: 30, life: 10 },
+          Tiekkot: { brute: 30, resistance: 50, life: 10 },
+          Zhial: { brute: 10, resistance: 30, life: 50 }
+        },
+        weapons: {
+          "Lepparrin's Lowertooth": {
+            damage: 30,
+            criticalHitChance: 50,
+            accuracy: 10
+          },
+          "Kurkkuin Rind": { damage: 50, criticalHitChance: 10, accuracy: 30 },
+          "Eiliin Tears": { damage: 10, criticalHitChance: 30, accuracy: 50 }
+        }
       }
     };
   },

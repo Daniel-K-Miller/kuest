@@ -18,6 +18,12 @@
               @click="toggleHighlight"
               required
             >
+            <ul class="stats">
+              <li
+                v-for="(item, key) in defaultAttributes.species.Gruvat"
+                :key="`item${key}`"
+              >{{key}}: {{ item }}</li>
+            </ul>
             <img src="@/assets/emblems/gruvatEmblem.svg" draggable="false">
             <h3>Gruvat</h3>
           </label>
@@ -29,6 +35,12 @@
               v-model="playerData.species"
               @click="toggleHighlight"
             >
+            <ul class="stats">
+              <li
+                v-for="(item, key) in defaultAttributes.species.Tiekkot"
+                :key="`item${key}`"
+              >{{key}}: {{ item }}</li>
+            </ul>
             <img src="@/assets/emblems/tiekkotEmblem.svg" draggable="false">
             <h3>Tiekkot</h3>
           </label>
@@ -40,6 +52,12 @@
               v-model="playerData.species"
               @click="toggleHighlight"
             >
+            <ul class="stats">
+              <li
+                v-for="(item, key) in defaultAttributes.species.Zhial"
+                :key="`item${key}`"
+              >{{key}}: {{ item }}</li>
+            </ul>
             <img src="@/assets/emblems/zhialEmblem.svg" draggable="false">
             <h3>Zhial</h3>
           </label>
@@ -57,6 +75,12 @@
               @click="toggleHighlight"
               required
             >
+            <ul class="stats">
+              <li
+                v-for="(item, key) in defaultAttributes.weapons[`Lepparrin's Lowertooth`]"
+                :key="`item${key}`"
+              >{{key}}: {{ item }}</li>
+            </ul>
             <img src="@/assets/weapons/weapon1.svg" draggable="false">
             <h3>Lepparrin's Lowertooth</h3>
           </label>
@@ -68,6 +92,12 @@
               v-model="playerData.weapon"
               @click="toggleHighlight"
             >
+            <ul class="stats">
+              <li
+                v-for="(item, key) in defaultAttributes.weapons[`Kurkkuin Rind`]"
+                :key="`item${key}`"
+              >{{key}}: {{ item }}</li>
+            </ul>
             <img src="@/assets/weapons/weapon3.svg" draggable="false">
             <h3>Kurkkuin Rind</h3>
           </label>
@@ -79,6 +109,12 @@
               v-model="playerData.weapon"
               @click="toggleHighlight"
             >
+            <ul class="stats">
+              <li
+                v-for="(item, key) in defaultAttributes.weapons[`Eiliin Tears`]"
+                :key="`item${key}`"
+              >{{key}}: {{ item }}</li>
+            </ul>
             <img src="@/assets/weapons/weapon2.svg" draggable="false">
             <h3>Eiliin Tears</h3>
           </label>
@@ -90,13 +126,16 @@
 </template>
 
 <script>
+import uuidv4 from "uuid";
 export default {
   props: {
-    playerData: Object
+    playerData: Object,
+    defaultAttributes: Object
   },
   data() {
     return {
-      prevRandomValue: {}
+      prevRandomValue: {},
+      uuid: uuidv4
     };
   },
   methods: {
@@ -120,37 +159,37 @@ export default {
       // sending species stats to playerData within App.js
       switch (this.playerData.species) {
         case "Gruvat":
-          this.playerData.attributes.brute = 50;
-          this.playerData.attributes.resistance = 30;
-          this.playerData.attributes.life = 10;
+          this.playerData.attributes.species.brute = 50;
+          this.playerData.attributes.species.resistance = 30;
+          this.playerData.attributes.species.life = 10;
           break;
         case "Tiekkot":
-          this.playerData.attributes.brute = 30;
-          this.playerData.attributes.resistance = 50;
-          this.playerData.attributes.life = 10;
+          this.playerData.attributes.species.brute = 30;
+          this.playerData.attributes.species.resistance = 50;
+          this.playerData.attributes.species.life = 10;
           break;
         case "Zhial":
-          this.playerData.attributes.brute = 10;
-          this.playerData.attributes.resistance = 30;
-          this.playerData.attributes.life = 50;
+          this.playerData.attributes.species.brute = 10;
+          this.playerData.attributes.species.resistance = 30;
+          this.playerData.attributes.species.life = 50;
           break;
       }
       // sending weapon stats to playerData within App.js
       switch (this.playerData.weapon) {
         case "Lepparrin's Lowertooth":
-          this.playerData.weaponAttributes.damage = 30;
-          this.playerData.weaponAttributes.criticalHitChance = 50;
-          this.playerData.weaponAttributes.accuracy = 10;
+          this.playerData.attributes.weapon.damage = 30;
+          this.playerData.attributes.weapon.criticalHitChance = 50;
+          this.playerData.attributes.weapon.accuracy = 10;
           break;
         case "Kurkkuin Rind":
-          this.playerData.weaponAttributes.damage = 50;
-          this.playerData.weaponAttributes.criticalHitChance = 10;
-          this.playerData.weaponAttributes.accuracy = 30;
+          this.playerData.attributes.weapon.damage = 50;
+          this.playerData.attributes.weapon.criticalHitChance = 10;
+          this.playerData.attributes.weapon.accuracy = 30;
           break;
         case "Eiliin Tears":
-          this.playerData.weaponAttributes.damage = 10;
-          this.playerData.weaponAttributes.criticalHitChance = 30;
-          this.playerData.weaponAttributes.accuracy = 50;
+          this.playerData.attributes.weapon.damage = 10;
+          this.playerData.attributes.weapon.criticalHitChance = 30;
+          this.playerData.attributes.weapon.accuracy = 50;
           break;
       }
     },
@@ -228,10 +267,12 @@ label {
   margin: 0 auto;
   img {
     width: 10vw;
-    border-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     user-select: none;
     background: $linkColor;
     opacity: 0.1;
+    cursor: pointer;
   }
   h3 {
     font-size: 1.2em;
@@ -263,7 +304,7 @@ label {
   }
 }
 #species-container {
-  background-color: lighten($backgroundColor, 8);
+  background-color: lighten($backgroundColor, 6);
 
   img {
     background-color: $linkColor;
@@ -273,12 +314,12 @@ label {
   }
 }
 #weapon-container {
-  background-color: lighten($backgroundColor, 4);
+  background-color: lighten($backgroundColor, 7);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 
   img {
-    background-color: $linkColor;
+    background-color: $inactiveLinkColor;
   }
   .labels-container {
     background-color: transparent;
@@ -303,13 +344,28 @@ label {
   height: 30px;
   background-color: $linkColor;
 }
-
+.stats {
+  list-style: none;
+  text-decoration: none;
+  color: $mainColor;
+  text-align: center;
+  width: 10vw;
+  opacity: 0.5;
+  font-size: 1em;
+}
 .selected {
+  cursor: pointer;
   h3 {
     color: white;
   }
   img {
     opacity: 1;
+  }
+  ul {
+    color: $mainColor;
+    opacity: 1;
+    background: $backgroundColor;
+    border-radius: 5px;
   }
 }
 </style>
