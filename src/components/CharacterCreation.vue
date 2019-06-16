@@ -324,11 +324,21 @@ label {
     background-color: transparent;
   }
 }
+#species-container .labels-container:hover {
+  // displaying stats on hover for species
+  ul {
+    opacity: 1;
+    font-size: 1.3em;
+    background-color: $mainColor;
+    color: black;
+    width: 150px;
+    padding: 0 2px;
+  }
+}
 #weapon-container {
   background-color: lighten($backgroundColor, 7);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-
   img {
     background-color: $inactiveLinkColor;
   }
@@ -356,14 +366,16 @@ label {
   background-color: $linkColor;
 }
 .stats {
+  position: absolute;
   list-style: none;
   text-decoration: none;
   color: $mainColor;
   text-align: center;
   width: 1;
-  opacity: 0.5;
+  opacity: 0;
   font-size: 1em;
 }
+
 .selected {
   cursor: pointer;
   h3 {
@@ -373,10 +385,9 @@ label {
     opacity: 1;
   }
   ul {
-    color: $mainColor;
-    opacity: 1;
-    background: $backgroundColor;
-    border-radius: 5px;
+    // bug here!
+    height: 200px;
+    background-color: pink;
   }
 }
 </style>
