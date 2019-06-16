@@ -141,6 +141,7 @@
             <h3>Eiliin Tears</h3>
           </label>
         </div>
+        <PlayerStatChart :defaultAttributes="defaultAttributes" :playerData="playerData"/>
       </div>
       <button type="submit" id="create-character-button">Create Character</button>
     </form>
@@ -148,7 +149,9 @@
 </template>
 
 <script>
+import PlayerStatChart from "@/components/PlayerStatChart.vue";
 export default {
+  components: { PlayerStatChart },
   props: {
     playerData: Object,
     defaultAttributes: Object
