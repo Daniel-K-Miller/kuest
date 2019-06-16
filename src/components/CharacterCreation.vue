@@ -329,7 +329,7 @@ label {
   ul {
     opacity: 1;
     font-size: 1.3em;
-    background-color: $mainColor;
+    background-color: $inactiveLinkColor;
     color: black;
     width: 150px;
     padding: 0 2px;
@@ -386,8 +386,10 @@ label {
   }
   ul {
     // bug here!
-    height: 200px;
-    background-color: pink;
+    padding: 0 2px;
+    li {
+      background-color: $mainColor;
+    }
   }
 }
 </style>
