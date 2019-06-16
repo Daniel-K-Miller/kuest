@@ -19,10 +19,12 @@
               required
             >
             <ul class="stats">
-              <li
-                v-for="(item, key) in defaultAttributes.species.Gruvat"
-                :key="`item${key}`"
-              >{{ key.slice(0, 1).toUpperCase() + key.slice(1) }}: {{ item }}</li>
+              <li v-for="(item, key) in defaultAttributes.species.Gruvat" :key="`item${key}`">
+                {{ key.slice(0, 1).toUpperCase() + key.slice(1) }}:
+                <span
+                  :class=" playerData.species === `Gruvat` ? (item < 30 ? `txt-low` : item > 30 ? `txt-high` : `txt-mid`) : '' "
+                >{{ item }}</span>
+              </li>
             </ul>
             <img src="@/assets/emblems/gruvatEmblem.svg" draggable="false">
             <h3>Gruvat</h3>
@@ -36,10 +38,13 @@
               @click="toggleHighlight"
             >
             <ul class="stats">
-              <li
-                v-for="(item, key) in defaultAttributes.species.Tiekkot"
-                :key="`item${key}`"
-              >{{ key.slice(0, 1).toUpperCase() + key.slice(1) }}: {{ item }}</li>
+              <li v-for="(item, key) in defaultAttributes.species.Tiekkot" :key="`item${key}`">
+                {{ key.slice(0, 1).toUpperCase() + key.slice(1) }}:
+                <span
+                  :class=" playerData.species === `Tiekkot` ? (item < 30 ? `txt-low` : item > 30 ? `txt-high` : `txt-mid`) : '' "
+                >{{ item }}</span>
+                <!-- ternary in a ternary to only show differentiated colors when label is selected -->
+              </li>
             </ul>
             <img src="@/assets/emblems/tiekkotEmblem.svg" draggable="false">
             <h3>Tiekkot</h3>
@@ -53,10 +58,12 @@
               @click="toggleHighlight"
             >
             <ul class="stats">
-              <li
-                v-for="(item, key) in defaultAttributes.species.Zhial"
-                :key="`item${key}`"
-              >{{ key.slice(0, 1).toUpperCase() + key.slice(1) }}: {{ item }}</li>
+              <li v-for="(item, key) in defaultAttributes.species.Zhial" :key="`item${key}`">
+                {{ key.slice(0, 1).toUpperCase() + key.slice(1) }}:
+                <span
+                  :class=" playerData.species === `Zhial` ? (item < 30 ? `txt-low` : item > 30 ? `txt-high` : `txt-mid`) : '' "
+                >{{ item }}</span>
+              </li>
             </ul>
             <img src="@/assets/emblems/zhialEmblem.svg" draggable="false">
             <h3>Zhial</h3>
@@ -79,7 +86,12 @@
               <li
                 v-for="(item, key) in defaultAttributes.weapons[`Lepparrin's Lowertooth`]"
                 :key="`item${key}`"
-              >{{ key.slice(0, 1).toUpperCase() + upperCaseText(key.slice(1)) }}: {{ item }}</li>
+              >
+                {{ key.slice(0, 1).toUpperCase() + upperCaseText(key.slice(1)) }}:
+                <span
+                  :class=" playerData.weapon === `Lepparrin's Lowertooth` ? (item < 30 ? `txt-low` : item > 30 ? `txt-high` : `txt-mid`) : '' "
+                >{{ item }}</span>
+              </li>
             </ul>
             <img src="@/assets/weapons/weapon1.svg" draggable="false">
             <h3>Lepparrin's Lowertooth</h3>
@@ -96,7 +108,12 @@
               <li
                 v-for="(item, key) in defaultAttributes.weapons[`Kurkkuin Rind`]"
                 :key="`item${key}`"
-              >{{ key.slice(0, 1).toUpperCase() + upperCaseText(key.slice(1)) }}: {{ item }}</li>
+              >
+                {{ key.slice(0, 1).toUpperCase() + upperCaseText(key.slice(1)) }}:
+                <span
+                  :class=" playerData.weapon === `Kurkkuin Rind` ? (item < 30 ? `txt-low` : item > 30 ? `txt-high` : `txt-mid`) : '' "
+                >{{ item }}</span>
+              </li>
             </ul>
             <img src="@/assets/weapons/weapon3.svg" draggable="false">
             <h3>Kurkkuin Rind</h3>
@@ -113,7 +130,12 @@
               <li
                 v-for="(item, key) in defaultAttributes.weapons[`Eiliin Tears`]"
                 :key="`item${key}`"
-              >{{ key.slice(0, 1).toUpperCase() + upperCaseText(key.slice(1)) }}: {{ item }}</li>
+              >
+                {{ key.slice(0, 1).toUpperCase() + upperCaseText(key.slice(1)) }}:
+                <span
+                  :class=" playerData.weapon === `Eiliin Tears` ? (item < 30 ? `txt-low` : item > 30 ? `txt-high` : `txt-mid`) : '' "
+                >{{ item }}</span>
+              </li>
             </ul>
             <img src="@/assets/weapons/weapon2.svg" draggable="false">
             <h3>Eiliin Tears</h3>
@@ -328,11 +350,14 @@ label {
   // displaying stats on hover for species
   ul {
     opacity: 1;
-    font-size: 1.3em;
+    font-size: 0.9em;
     background-color: $inactiveLinkColor;
     color: black;
     width: 150px;
-    padding: 0 2px;
+    padding: 5px 2px;
+    li {
+      padding: 3px 0;
+    }
   }
 }
 #weapon-container {
@@ -344,6 +369,20 @@ label {
   }
   .labels-container {
     background-color: transparent;
+  }
+}
+#weapon-container .labels-container:hover {
+  // displaying stats on hover for species
+  ul {
+    opacity: 1;
+    font-size: 0.9em;
+    background-color: $inactiveLinkColor;
+    color: black;
+    width: 150px;
+    padding: 10px 2px;
+    li {
+      padding: 3px 0;
+    }
   }
 }
 #create-character-button {
@@ -385,11 +424,32 @@ label {
     opacity: 1;
   }
   ul {
-    // bug here!
     padding: 0 2px;
     li {
-      background-color: $mainColor;
+      opacity: 1;
+      color: white;
+      text-shadow: 2px 2px 8px $inactiveLinkColor;
     }
   }
+}
+
+// setting attributes to correct visual colors
+.txt-low {
+  color: #a52121;
+  background-color: $backgroundColor;
+  padding: 2px;
+  border-radius: 3px;
+}
+.txt-mid {
+  color: goldenrod;
+  background-color: $backgroundColor;
+  padding: 2px;
+  border-radius: 3px;
+}
+.txt-high {
+  color: #86ef97;
+  background-color: $backgroundColor;
+  padding: 2px;
+  border-radius: 3px;
 }
 </style>
