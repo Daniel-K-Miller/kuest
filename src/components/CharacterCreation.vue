@@ -1,157 +1,30 @@
 <template>
-  <div id="main-container">
-    <form @submit.prevent="handleSubmit">
-      <div id="name-container" class="divide">
-        <h2>Character Name:</h2>
-        <input type="text" name="playerName" maxlength="12" v-model="playerData.name" required>
-        <button id="random-btn" type="button" @click="handleRandom"></button>
-      </div>
-      <div id="species-container" class="divide">
-        <h2>Select Species</h2>
-        <div class="labels-container">
-          <label :class="[ playerData.species === `Gruvat` ? `selected` : ``]">
-            <input
-              type="radio"
-              name="species"
-              value="Gruvat"
-              v-model="playerData.species"
-              @click="toggleHighlight"
-              required
-            >
-            <ul class="stats">
-              <li v-for="(item, key) in defaultAttributes.species.Gruvat" :key="`item${key}`">
-                {{ key.slice(0, 1).toUpperCase() + key.slice(1) }}:
-                <span
-                  :class=" playerData.species === `Gruvat` ? (item < 30 ? `txt-low` : item > 30 ? `txt-high` : `txt-mid`) : '' "
-                >{{ item }}</span>
-              </li>
-            </ul>
-            <img src="@/assets/emblems/gruvatEmblem.svg" draggable="false">
-            <h3>Gruvat</h3>
-          </label>
-          <label :class="[ playerData.species === `Tiekkot` ? `selected` : ``]">
-            <input
-              type="radio"
-              name="species"
-              value="Tiekkot"
-              v-model="playerData.species"
-              @click="toggleHighlight"
-            >
-            <ul class="stats">
-              <li v-for="(item, key) in defaultAttributes.species.Tiekkot" :key="`item${key}`">
-                {{ key.slice(0, 1).toUpperCase() + key.slice(1) }}:
-                <span
-                  :class=" playerData.species === `Tiekkot` ? (item < 30 ? `txt-low` : item > 30 ? `txt-high` : `txt-mid`) : '' "
-                >{{ item }}</span>
-                <!-- ternary in a ternary to only show differentiated colors when label is selected -->
-              </li>
-            </ul>
-            <img src="@/assets/emblems/tiekkotEmblem.svg" draggable="false">
-            <h3>Tiekkot</h3>
-          </label>
-          <label :class="[ playerData.species === `Zhial` ? `selected` : ``]">
-            <input
-              type="radio"
-              name="species"
-              value="Zhial"
-              v-model="playerData.species"
-              @click="toggleHighlight"
-            >
-            <ul class="stats">
-              <li v-for="(item, key) in defaultAttributes.species.Zhial" :key="`item${key}`">
-                {{ key.slice(0, 1).toUpperCase() + key.slice(1) }}:
-                <span
-                  :class=" playerData.species === `Zhial` ? (item < 30 ? `txt-low` : item > 30 ? `txt-high` : `txt-mid`) : '' "
-                >{{ item }}</span>
-              </li>
-            </ul>
-            <img src="@/assets/emblems/zhialEmblem.svg" draggable="false">
-            <h3>Zhial</h3>
-          </label>
-        </div>
-      </div>
-      <div id="weapon-container" class="divide">
-        <h2>Select Weapon</h2>
-        <div class="labels-container">
-          <label :class="[ playerData.weapon === `Lepparrin's Lowertooth` ? `selected` : ``]">
-            <input
-              type="radio"
-              name="weapon"
-              value="Lepparrin's Lowertooth"
-              v-model="playerData.weapon"
-              @click="toggleHighlight"
-              required
-            >
-            <ul class="stats">
-              <li
-                v-for="(item, key) in defaultAttributes.weapons[`Lepparrin's Lowertooth`]"
-                :key="`item${key}`"
-              >
-                {{ key.slice(0, 1).toUpperCase() + upperCaseText(key.slice(1)) }}:
-                <span
-                  :class=" playerData.weapon === `Lepparrin's Lowertooth` ? (item < 30 ? `txt-low` : item > 30 ? `txt-high` : `txt-mid`) : '' "
-                >{{ item }}</span>
-              </li>
-            </ul>
-            <img src="@/assets/weapons/weapon1.svg" draggable="false">
-            <h3>Lepparrin's Lowertooth</h3>
-          </label>
-          <label :class="[ playerData.weapon === `Kurkkuin Rind` ? `selected` : ``]">
-            <input
-              type="radio"
-              name="weapon"
-              value="Kurkkuin Rind"
-              v-model="playerData.weapon"
-              @click="toggleHighlight"
-            >
-            <ul class="stats">
-              <li
-                v-for="(item, key) in defaultAttributes.weapons[`Kurkkuin Rind`]"
-                :key="`item${key}`"
-              >
-                {{ key.slice(0, 1).toUpperCase() + upperCaseText(key.slice(1)) }}:
-                <span
-                  :class=" playerData.weapon === `Kurkkuin Rind` ? (item < 30 ? `txt-low` : item > 30 ? `txt-high` : `txt-mid`) : '' "
-                >{{ item }}</span>
-              </li>
-            </ul>
-            <img src="@/assets/weapons/weapon3.svg" draggable="false">
-            <h3>Kurkkuin Rind</h3>
-          </label>
-          <label :class="[ playerData.weapon === `Eiliin Tears` ? `selected` : ``]">
-            <input
-              type="radio"
-              name="weapon"
-              value="Eiliin Tears"
-              v-model="playerData.weapon"
-              @click="toggleHighlight"
-            >
-            <ul class="stats">
-              <li
-                v-for="(item, key) in defaultAttributes.weapons[`Eiliin Tears`]"
-                :key="`item${key}`"
-              >
-                {{ key.slice(0, 1).toUpperCase() + upperCaseText(key.slice(1)) }}:
-                <span
-                  :class=" playerData.weapon === `Eiliin Tears` ? (item < 30 ? `txt-low` : item > 30 ? `txt-high` : `txt-mid`) : '' "
-                >{{ item }}</span>
-              </li>
-            </ul>
-            <img src="@/assets/weapons/weapon2.svg" draggable="false">
-            <h3>Eiliin Tears</h3>
-          </label>
-        </div>
-        <PlayerStatChart :defaultAttributes="defaultAttributes" :playerData="playerData"/>
-      </div>
-      <button type="submit" id="create-character-button">Create Character</button>
-    </form>
-  </div>
+  <form id="main-container" @submit.prevent="handleSubmit">
+    <Name :playerData="playerData" :handleRandom="handleRandom"/>
+    <Species
+      :playerData="playerData"
+      :defaultAttributes="defaultAttributes"
+      :toggleHighlight="toggleHighlight"
+    />
+    <Weapons
+      :playerData="playerData"
+      :defaultAttributes="defaultAttributes"
+      :toggleHighlight="toggleHighlight"
+      :upperCaseText="upperCaseText"
+    />
+
+    <button type="submit" id="create-character-button">Create Character</button>
+  </form>
 </template>
 
 <script>
 import PlayerStatChart from "@/components/PlayerStatChart.vue";
+import Name from "@/components/CharacterCreation/Name.vue";
+import Species from "@/components/CharacterCreation/Species.vue";
+import Weapons from "@/components/CharacterCreation/Weapons.vue";
+
 export default {
-  components: { PlayerStatChart },
+  components: { Name, Species, Weapons, PlayerStatChart },
   props: {
     playerData: Object,
     defaultAttributes: Object
@@ -179,51 +52,10 @@ export default {
     },
     handleSubmit() {
       this.playerData.level = 1;
-      // sending species stats to playerData within App.js
-      switch (this.playerData.species) {
-        case "Gruvat":
-          this.playerData.attributes.species.brute = 50;
-          this.playerData.attributes.species.resistance = 30;
-          this.playerData.attributes.species.life = 10;
-          break;
-        case "Tiekkot":
-          this.playerData.attributes.species.brute = 30;
-          this.playerData.attributes.species.resistance = 50;
-          this.playerData.attributes.species.life = 10;
-          break;
-        case "Zhial":
-          this.playerData.attributes.species.brute = 10;
-          this.playerData.attributes.species.resistance = 30;
-          this.playerData.attributes.species.life = 50;
-          break;
-      }
-      // sending weapon stats to playerData within App.js
-      switch (this.playerData.weapon) {
-        case "Lepparrin's Lowertooth":
-          this.playerData.attributes.weapon.damage = 30;
-          this.playerData.attributes.weapon.criticalHitChance = 50;
-          this.playerData.attributes.weapon.accuracy = 10;
-          break;
-        case "Kurkkuin Rind":
-          this.playerData.attributes.weapon.damage = 50;
-          this.playerData.attributes.weapon.criticalHitChance = 10;
-          this.playerData.attributes.weapon.accuracy = 30;
-          break;
-        case "Eiliin Tears":
-          this.playerData.attributes.weapon.damage = 10;
-          this.playerData.attributes.weapon.criticalHitChance = 30;
-          this.playerData.attributes.weapon.accuracy = 50;
-          break;
-      }
+      // sending species stats to playerData if random-btn is used
     },
     handleRandom() {
       const names = ["Aeal", "Jasu", "Binksia"];
-      const species = ["Gruvat", "Tiekkot", "Zhial"];
-      const weapons = [
-        "Lepparrin's Lowertooth",
-        "Eiliin Tears",
-        "Kurkkuin Rind"
-      ];
 
       // current iteration of playerData passed from getRandomValues()
       let newPlayerData = {};
@@ -231,10 +63,19 @@ export default {
       let getRandomValues = () => {
         Object.assign(newPlayerData, {
           name: names[Math.floor(Math.random() * names.length)],
-          species: species[Math.floor(Math.random() * species.length)],
-          weapon: weapons[Math.floor(Math.random() * weapons.length)]
+          species: Object.keys(this.defaultAttributes.species)[
+            Math.floor(
+              Math.random() * Object.keys(this.defaultAttributes.species).length
+            )
+          ],
+          weapon: Object.keys(this.defaultAttributes.weapons)[
+            Math.floor(
+              Math.random() * Object.keys(this.defaultAttributes.weapons).length
+            )
+          ]
         });
       };
+
       getRandomValues();
 
       // while loop to catch if an identical set of random values exist in the previous object of playerData and this current iteration
@@ -264,11 +105,51 @@ export default {
       }
       return splitString.join("");
     }
+  },
+  computed: {
+    playerDataSpeciesUpdate() {
+      return this.playerData.species;
+    },
+    playerDataWeaponUpdate() {
+      return this.playerData.weapon;
+    }
+  },
+  watch: {
+    playerDataSpeciesUpdate(newVal) {
+      if (newVal === "Gruvat") {
+        this.playerData.attributes.species.brute = 50;
+        this.playerData.attributes.species.resistance = 30;
+        this.playerData.attributes.species.life = 10;
+      } else if (newVal === "Tiekkot") {
+        this.playerData.attributes.species.brute = 30;
+        this.playerData.attributes.species.resistance = 50;
+        this.playerData.attributes.species.life = 10;
+      } else if (newVal === "Zhial") {
+        this.playerData.attributes.species.brute = 10;
+        this.playerData.attributes.species.resistance = 30;
+        this.playerData.attributes.species.life = 50;
+      }
+    },
+    playerDataWeaponUpdate(newVal) {
+      if (newVal === "Lepparrin's Lowertooth") {
+        this.playerData.attributes.weapon.damage = 30;
+        this.playerData.attributes.weapon.criticalHitChance = 50;
+        this.playerData.attributes.weapon.accuracy = 10;
+      } else if (newVal === "Eiliin Tears") {
+        this.playerData.attributes.weapon.damage = 10;
+        this.playerData.attributes.weapon.criticalHitChance = 30;
+        this.playerData.attributes.weapon.accuracy = 50;
+      } else if (newVal === "Kurkkuin Rind") {
+        this.playerData.attributes.weapon.damage = 50;
+        this.playerData.attributes.weapon.criticalHitChance = 10;
+        this.playerData.attributes.weapon.accuracy = 30;
+      }
+    }
   }
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 #main-container {
   border-radius: 20px;
 }
