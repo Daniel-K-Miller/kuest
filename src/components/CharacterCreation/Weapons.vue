@@ -64,7 +64,6 @@
         <h3>Eiliin Tears</h3>
       </label>
     </div>
-    <PlayerStatChart :defaultAttributes="defaultAttributes" :playerData="playerData"/>
   </div>
 </template>
 

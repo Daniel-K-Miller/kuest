@@ -12,16 +12,21 @@
       :toggleHighlight="toggleHighlight"
       :upperCaseText="upperCaseText"
     />
-
+    <PlayerStatChart
+      :defaultAttributes="defaultAttributes"
+      :playerData="playerData"
+      :playerDataSpeciesUpdate="playerDataSpeciesUpdate"
+      :playerDataWeaponUpdate="playerDataWeaponUpdate"
+    />
     <button type="submit" id="create-character-button">Create Character</button>
   </form>
 </template>
 
 <script>
-import PlayerStatChart from "@/components/PlayerStatChart.vue";
 import Name from "@/components/CharacterCreation/Name.vue";
 import Species from "@/components/CharacterCreation/Species.vue";
 import Weapons from "@/components/CharacterCreation/Weapons.vue";
+import PlayerStatChart from "@/components/CharacterCreation/PlayerStatChart.vue";
 
 export default {
   components: { Name, Species, Weapons, PlayerStatChart },
@@ -79,7 +84,7 @@ export default {
       getRandomValues();
 
       // while loop to catch if an identical set of random values exist in the previous object of playerData and this current iteration
-      // therefore retriggering getting random values until a non-identical copy is made. Prevent random button being useless.
+      // therefore retriggering getting random values until a non-identical copy is made. Prevent random button press being useless.
 
       while (
         this.playerData.name === newPlayerData.name &&
