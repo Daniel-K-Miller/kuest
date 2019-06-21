@@ -19,8 +19,6 @@ export default {
   },
 
   mounted() {
-    // console.log(d3.max([30, 23]));
-
     const scale = d3.scaleLinear();
 
     let domain =
@@ -40,11 +38,7 @@ export default {
       .attr("width", 500)
       .attr("height", h)
       .selectAll("rect")
-      .data([
-        this.playerData.attributes.species.brute,
-        this.playerData.attributes.species.resistance,
-        this.playerData.attributes.species.life
-      ])
+      .data(Object.values(this.playerData.attributes.species))
       .enter()
       .append("rect")
       .attr("width", 75)
@@ -58,17 +52,26 @@ export default {
         return h - d * 3;
       })
       .attr("fill", "red");
+
+    d3.select("svg")
+      .selectAll("text")
+      .data(Object.keys(this.playerData.attributes.species))
+      .enter()
+      .append("text")
+      .text(d => d)
+      .attr("x", (d, i) => {
+        return i * 100;
+      })
+      .attr("y", (d, i) => {
+        return h - Object.values(this.playerData.attributes.species)[i] - 5;
+      });
   },
   watch: {
     playerDataSpeciesUpdate() {
       let h = 200;
       d3.select("svg")
         .selectAll("rect")
-        .data([
-          this.playerData.attributes.species.brute,
-          this.playerData.attributes.species.resistance,
-          this.playerData.attributes.species.life
-        ])
+        .data(Object.values(this.playerData.attributes.species))
         .attr("height", (d, i) => {
           return d * 3;
         })
@@ -77,6 +80,19 @@ export default {
         })
         .attr("fill", (d, i) => {
           return i === 0 ? `blue` : i === 1 ? `green` : `red`;
+        });
+
+      d3.select("svg")
+        .selectAll("text")
+        .data(Object.keys(this.playerData.attributes.species))
+        .enter()
+        .append("text")
+        .text(d => d)
+        .attr("x", (d, i) => {
+          return i * 100;
+        })
+        .attr("y", (d, i) => {
+          return h - Object.values(this.playerData.attributes.species)[i] - 5;
         });
     }
   }

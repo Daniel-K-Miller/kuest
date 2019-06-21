@@ -34,7 +34,7 @@ export default {
         weapon: "",
         level: 0,
         attributes: {
-          species: { life: 0, brute: 0, resistance: 0 },
+          species: { brute: 0, resistance: 0, life: 0 },
           weapon: { damage: 0, criticalHitChance: 0, accuracy: 0 }
         }
       },
