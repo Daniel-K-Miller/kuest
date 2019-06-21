@@ -17,14 +17,21 @@ export default {
   data() {
     return {};
   },
-  methods: {
-    calcIndex(index) {
-      console.log(index + 1);
-    }
-  },
 
   mounted() {
     // console.log(d3.max([30, 23]));
+
+    const scale = d3.scaleLinear();
+
+    let domain =
+      scale.domain[
+        (0, d3.max(Object.values(this.playerData.attributes.species)))
+      ];
+    let range =
+      scale.range[
+        (d3.min(Object.values(this.playerData.attributes.species)),
+        d3.max(Object.values(this.playerData.attributes.species)))
+      ];
 
     let h = 200;
     d3.select("#test")
@@ -54,23 +61,16 @@ export default {
   },
   watch: {
     playerDataSpeciesUpdate() {
-      // d3.min(Object.values(this.playerData.attributes.species))
-      // d3.max(Object.values(this.playerData.attributes.species))
-
       let h = 200;
       d3.select("svg")
         .selectAll("rect")
-        .data(
+        .data([
           this.playerData.attributes.species.brute,
           this.playerData.attributes.species.resistance,
           this.playerData.attributes.species.life
-        )
-        .attr("width", 75)
+        ])
         .attr("height", (d, i) => {
           return d * 3;
-        })
-        .attr("x", (d, i) => {
-          return i * 100;
         })
         .attr("y", (d, i) => {
           return h - d * 3;
