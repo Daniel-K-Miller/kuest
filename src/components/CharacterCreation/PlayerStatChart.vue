@@ -1,6 +1,6 @@
 <template>
   <div id="test">
-    <svg width="500" height="200"></svg>
+    <svg :width="width" :height="height"></svg>
   </div>
 </template>
 
@@ -11,74 +11,88 @@ export default {
   props: {
     defaultAttributes: Object,
     playerData: Object,
-    playerDataSpeciesUpdate: String,
-    playerDataWeaponUpdate: String
+    playerDataUpdate: Array
   },
   data() {
-    return {};
+    return {
+      barWidth: 40,
+      padding: 100,
+      width: 500,
+      height: 200
+    };
+  },
+  computed: {
+    xScale() {
+      return d3
+        .scaleLinear()
+        .domain([
+          0,
+          d3.max(this.dataVal, (d, i) => {
+            return i;
+          })
+        ])
+        .range([0, this.width - this.barWidth]);
+    },
+    dataVal() {
+      return Object.values(this.playerData.attributes.species).concat(
+        Object.values(this.playerData.attributes.weapon)
+      );
+    },
+    dataName() {
+      return Object.keys(this.playerData.attributes.species).concat(
+        Object.keys(this.playerData.attributes.weapon)
+      );
+    }
   },
 
   mounted() {
-    const xScale = d3
-      .scaleLinear()
-      .domain([
-        0,
-        d3.max(Object.values(this.playerData.attributes.species), (d, i) => {
-          return i;
-        })
-      ])
-      .range([0, 500]);
-
-    let h = 200;
-    let padding = 100;
     d3.select("#test")
       .select("svg")
       .append("svg")
       .attr("width", 500)
-      .attr("height", h + padding)
+      .attr("height", this.height + this.padding)
       .selectAll("rect")
-      .data(Object.values(this.playerData.attributes.species))
+      .data(this.dataVal)
       .enter()
       .append("rect")
-      .attr("width", 25)
+      .attr("width", this.barWidth)
       .attr("height", (d, i) => {
         return d * 3;
       })
       .attr("x", (d, i) => {
-        return i * 50;
+        return this.xScale(i);
       })
+
       .attr("y", (d, i) => {
-        return h - padding - d * 3;
+        return this.height - this.padding - d * 3;
       })
       .attr("fill", "red");
 
     d3.select("svg")
       .selectAll("text")
-      .data(Object.keys(this.playerData.attributes.species))
+      .data(this.dataName)
       .enter()
       .append("text")
       .text(d => d)
 
       .attr("x", (d, i) => {
-        return i * 50;
+        return this.xScale(i);
       })
       .attr("y", (d, i) => {
-        return h - Object.values(this.playerData.attributes.species)[i] - 5;
+        return this.height - this.padding / 2 + 20;
       })
       .attr("class", "txt-label");
   },
   watch: {
-    playerDataSpeciesUpdate() {
-      let h = 200;
-      let padding = 100;
+    playerDataUpdate() {
       d3.select("svg")
         .selectAll("rect")
-        .data(Object.values(this.playerData.attributes.species))
+        .data(this.dataVal)
         .attr("height", (d, i) => {
           return d * 3;
         })
         .attr("y", (d, i) => {
-          return h - 50 - d * 3;
+          return this.height - 50 - d * 3;
         })
         .attr("fill", (d, i) => {
           return i === 0 ? `blue` : i === 1 ? `green` : `red`;
@@ -86,7 +100,7 @@ export default {
 
       d3.select("svg")
         .selectAll("text")
-        .data(Object.keys(this.playerData.attributes.species))
+        .data(this.dataName)
         .enter()
         .append("text")
         .text(d => d)
@@ -94,7 +108,7 @@ export default {
           return i * 50;
         })
         .attr("y", (d, i) => {
-          return h + 10 - Object.values(this.playerData.attributes.species)[i];
+          return this.height + 10 - this.dataName[i];
         });
     }
   }

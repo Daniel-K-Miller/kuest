@@ -15,8 +15,7 @@
     <PlayerStatChart
       :defaultAttributes="defaultAttributes"
       :playerData="playerData"
-      :playerDataSpeciesUpdate="playerDataSpeciesUpdate"
-      :playerDataWeaponUpdate="playerDataWeaponUpdate"
+      :playerDataUpdate="playerDataUpdate"
     />
     <button type="submit" id="create-character-button">Create Character</button>
   </form>
@@ -112,39 +111,36 @@ export default {
     }
   },
   computed: {
-    playerDataSpeciesUpdate() {
-      return this.playerData.species;
-    },
-    playerDataWeaponUpdate() {
-      return this.playerData.weapon;
+    playerDataUpdate() {
+      return [this.playerData.species, this.playerData.weapon];
     }
   },
   watch: {
-    playerDataSpeciesUpdate(newVal) {
-      if (newVal === "Gruvat") {
+    playerDataUpdate(newVal) {
+      console.log(newVal);
+      if (newVal[0] === "Gruvat") {
         this.playerData.attributes.species.brute = 50;
         this.playerData.attributes.species.resistance = 30;
         this.playerData.attributes.species.life = 10;
-      } else if (newVal === "Tiekkot") {
+      } else if (newVal[0] === "Tiekkot") {
         this.playerData.attributes.species.brute = 30;
         this.playerData.attributes.species.resistance = 50;
         this.playerData.attributes.species.life = 10;
-      } else if (newVal === "Zhial") {
+      } else if (newVal[0] === "Zhial") {
         this.playerData.attributes.species.brute = 10;
         this.playerData.attributes.species.resistance = 30;
         this.playerData.attributes.species.life = 50;
       }
-    },
-    playerDataWeaponUpdate(newVal) {
-      if (newVal === "Lepparrin's Lowertooth") {
+
+      if (newVal[1] === "Lepparrin's Lowertooth") {
         this.playerData.attributes.weapon.damage = 30;
         this.playerData.attributes.weapon.criticalHitChance = 50;
         this.playerData.attributes.weapon.accuracy = 10;
-      } else if (newVal === "Eiliin Tears") {
+      } else if (newVal[1] === "Eiliin Tears") {
         this.playerData.attributes.weapon.damage = 10;
         this.playerData.attributes.weapon.criticalHitChance = 30;
         this.playerData.attributes.weapon.accuracy = 50;
-      } else if (newVal === "Kurkkuin Rind") {
+      } else if (newVal[1] === "Kurkkuin Rind") {
         this.playerData.attributes.weapon.damage = 50;
         this.playerData.attributes.weapon.criticalHitChance = 10;
         this.playerData.attributes.weapon.accuracy = 30;
