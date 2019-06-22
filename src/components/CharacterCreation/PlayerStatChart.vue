@@ -1,6 +1,6 @@
 <template>
-  <div id="test">
-    <svg :width="width" :height="height"></svg>
+  <div id="chart-container">
+    <svg :width="width" :height="175"></svg>
   </div>
 </template>
 
@@ -46,7 +46,7 @@ export default {
   },
 
   mounted() {
-    d3.select("#test")
+    d3.select("#chart-container")
       .select("svg")
       .append("svg")
       .attr("width", 500)
@@ -95,7 +95,26 @@ export default {
           return this.height - 50 - d * 3;
         })
         .attr("fill", (d, i) => {
-          return i === 0 ? `blue` : i === 1 ? `green` : `red`;
+          switch (i) {
+            case 0:
+              // brute color
+              return `#772828`;
+            case 1:
+              // resistance color
+              return `#283777`;
+            case 2:
+              // life color
+              return `#287753`;
+            case 3:
+              // damage color
+              return `#772873`;
+            case 4:
+              // critical hit chance color
+              return `#287577`;
+            case 5:
+              // accuracy
+              return `#777528`;
+          }
         });
 
       d3.select("svg")
@@ -103,10 +122,6 @@ export default {
         .data(this.dataName)
         .enter()
         .append("text")
-        .text(d => d)
-        .attr("x", (d, i) => {
-          return i * 50;
-        })
         .attr("y", (d, i) => {
           return this.height + 10 - this.dataName[i];
         });
@@ -116,7 +131,25 @@ export default {
 </script>
 
 <style scope lang="scss">
+@import "../../SCSS/variables";
+
 .txt-label {
   fill: white;
+}
+
+#chart-container {
+  width: 1000px;
+  margin: 0 auto;
+  background-color: lighten($backgroundColor, 10);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 40px 0;
+
+  img {
+    background-color: $inactiveLinkColor;
+  }
+  .labels-container {
+    background-color: transparent;
+  }
 }
 </style>

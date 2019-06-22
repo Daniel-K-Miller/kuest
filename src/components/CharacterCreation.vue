@@ -117,7 +117,6 @@ export default {
   },
   watch: {
     playerDataUpdate(newVal) {
-      console.log(newVal);
       if (newVal[0] === "Gruvat") {
         this.playerData.attributes.species.brute = 50;
         this.playerData.attributes.species.resistance = 30;
@@ -151,11 +150,12 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../SCSS/variables";
+
 #main-container {
   border-radius: 20px;
 }
 
-@import "../SCSS/variables";
 [type="radio"] {
   position: absolute;
   opacity: 0;
@@ -175,16 +175,17 @@ input {
 label {
   background-color: $backgroundColor;
   margin: 10px;
-  border-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .divide {
   background-color: $inactiveLinkColor;
   padding: 20px 0;
-  width: 50vw;
+  width: 1000px;
   margin: 0 auto;
   img {
-    width: 8vw;
+    width: 150px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     user-select: none;
@@ -231,24 +232,9 @@ label {
     background-color: transparent;
   }
 }
-#species-container .labels-container:hover {
-  // displaying stats on hover for species
-  ul {
-    opacity: 1;
-    font-size: 0.9em;
-    background-color: $inactiveLinkColor;
-    color: black;
-    width: 150px;
-    padding: 5px 2px;
-    li {
-      padding: 3px 0;
-    }
-  }
-}
+
 #weapon-container {
   background-color: lighten($backgroundColor, 7);
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
   img {
     background-color: $inactiveLinkColor;
   }
@@ -256,20 +242,7 @@ label {
     background-color: transparent;
   }
 }
-#weapon-container .labels-container:hover {
-  // displaying stats on hover for species
-  ul {
-    opacity: 1;
-    font-size: 0.9em;
-    background-color: $inactiveLinkColor;
-    color: black;
-    width: 150px;
-    padding: 10px 2px;
-    li {
-      padding: 3px 0;
-    }
-  }
-}
+
 #create-character-button {
   background-color: $inactiveLinkColor;
   color: $mainColor;
@@ -295,9 +268,28 @@ label {
   text-decoration: none;
   color: $mainColor;
   text-align: center;
-  width: 1;
-  opacity: 0;
   font-size: 1em;
+}
+label {
+  ul {
+    height: 0;
+    width: 150px;
+    li {
+      opacity: 0;
+      transition: all 0.3s ease-in-out;
+      padding: 2px;
+    }
+  }
+}
+// hovering over labl
+label:hover {
+  ul {
+    background: blue;
+    li {
+      opacity: 1;
+      transition: all 0.1s ease-in-out;
+    }
+  }
 }
 
 .selected {
@@ -309,7 +301,6 @@ label {
     opacity: 1;
   }
   ul {
-    padding: 0 2px;
     li {
       opacity: 1;
       color: white;
