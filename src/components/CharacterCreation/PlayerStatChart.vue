@@ -19,37 +19,36 @@ export default {
   },
 
   mounted() {
-    const scale = d3.scaleLinear();
-
-    let domain =
-      scale.domain[
-        (0, d3.max(Object.values(this.playerData.attributes.species)))
-      ];
-    let range =
-      scale.range[
-        (d3.min(Object.values(this.playerData.attributes.species)),
-        d3.max(Object.values(this.playerData.attributes.species)))
-      ];
+    const xScale = d3
+      .scaleLinear()
+      .domain([
+        0,
+        d3.max(Object.values(this.playerData.attributes.species), (d, i) => {
+          return i;
+        })
+      ])
+      .range([0, 500]);
 
     let h = 200;
+    let padding = 100;
     d3.select("#test")
       .select("svg")
       .append("svg")
       .attr("width", 500)
-      .attr("height", h)
+      .attr("height", h + padding)
       .selectAll("rect")
       .data(Object.values(this.playerData.attributes.species))
       .enter()
       .append("rect")
-      .attr("width", 75)
+      .attr("width", 25)
       .attr("height", (d, i) => {
         return d * 3;
       })
       .attr("x", (d, i) => {
-        return i * 100;
+        return i * 50;
       })
       .attr("y", (d, i) => {
-        return h - d * 3;
+        return h - padding - d * 3;
       })
       .attr("fill", "red");
 
@@ -59,16 +58,19 @@ export default {
       .enter()
       .append("text")
       .text(d => d)
+
       .attr("x", (d, i) => {
-        return i * 100;
+        return i * 50;
       })
       .attr("y", (d, i) => {
         return h - Object.values(this.playerData.attributes.species)[i] - 5;
-      });
+      })
+      .attr("class", "txt-label");
   },
   watch: {
     playerDataSpeciesUpdate() {
       let h = 200;
+      let padding = 100;
       d3.select("svg")
         .selectAll("rect")
         .data(Object.values(this.playerData.attributes.species))
@@ -76,7 +78,7 @@ export default {
           return d * 3;
         })
         .attr("y", (d, i) => {
-          return h - d * 3;
+          return h - 50 - d * 3;
         })
         .attr("fill", (d, i) => {
           return i === 0 ? `blue` : i === 1 ? `green` : `red`;
@@ -89,12 +91,18 @@ export default {
         .append("text")
         .text(d => d)
         .attr("x", (d, i) => {
-          return i * 100;
+          return i * 50;
         })
         .attr("y", (d, i) => {
-          return h - Object.values(this.playerData.attributes.species)[i] - 5;
+          return h + 10 - Object.values(this.playerData.attributes.species)[i];
         });
     }
   }
 };
 </script>
+
+<style scope lang="scss">
+.txt-label {
+  fill: white;
+}
+</style>
