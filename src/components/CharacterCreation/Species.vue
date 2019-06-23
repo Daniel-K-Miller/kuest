@@ -2,7 +2,7 @@
   <div id="species-container" class="divide">
     <h2>Select Species</h2>
     <div class="labels-container">
-      <label :class="[ playerData.species === `Gruvat` ? `selected` : ``]">
+      <label :class="[ playerData.species === `Gruvat` ? `selected` : `non-selected`]">
         <input
           type="radio"
           name="species"
@@ -12,17 +12,16 @@
           required
         >
         <ul class="stats">
-          <li v-for="(item, key) in defaultAttributes.species.Gruvat" :key="`item${key}`">
-            {{ key.slice(0, 1).toUpperCase() + key.slice(1) }}:
-            <span
-              :class=" playerData.species === `Gruvat` ? (item < 30 ? `txt-low` : item > 30 ? `txt-high` : `txt-mid`) : '' "
-            >{{ item }}</span>
-          </li>
+          <li
+            v-for="(item, key) in defaultAttributes.species.Gruvat"
+            :key="`item${key}`"
+            :class=" classColor(key) "
+          >{{ item }}</li>
         </ul>
         <img src="@/assets/emblems/gruvatEmblem.svg" draggable="false">
         <h3>Gruvat</h3>
       </label>
-      <label :class="[ playerData.species === `Tiekkot` ? `selected` : ``]">
+      <label :class="[ playerData.species === `Tiekkot` ? `selected` : `non-selected`]">
         <input
           type="radio"
           name="species"
@@ -31,18 +30,19 @@
           @click="toggleHighlight"
         >
         <ul class="stats">
-          <li v-for="(item, key) in defaultAttributes.species.Tiekkot" :key="`item${key}`">
-            {{ key.slice(0, 1).toUpperCase() + key.slice(1) }}:
-            <span
-              :class=" playerData.species === `Tiekkot` ? (item < 30 ? `txt-low` : item > 30 ? `txt-high` : `txt-mid`) : '' "
-            >{{ item }}</span>
+          <li
+            v-for="(item, key) in defaultAttributes.species.Tiekkot"
+            :key="`item${key}`"
+            :class="classColor(key)"
+          >
+            {{ item }}
             <!-- ternary in a ternary to only show differentiated colors when label is selected -->
           </li>
         </ul>
         <img src="@/assets/emblems/tiekkotEmblem.svg" draggable="false">
         <h3>Tiekkot</h3>
       </label>
-      <label :class="[ playerData.species === `Zhial` ? `selected` : ``]">
+      <label :class="[ playerData.species === `Zhial` ? `selected` : `non-selected`]">
         <input
           type="radio"
           name="species"
@@ -51,12 +51,11 @@
           @click="toggleHighlight"
         >
         <ul class="stats">
-          <li v-for="(item, key) in defaultAttributes.species.Zhial" :key="`item${key}`">
-            {{ key.slice(0, 1).toUpperCase() + key.slice(1) }}:
-            <span
-              :class=" playerData.species === `Zhial` ? (item < 30 ? `txt-low` : item > 30 ? `txt-high` : `txt-mid`) : '' "
-            >{{ item }}</span>
-          </li>
+          <li
+            v-for="(item, key) in defaultAttributes.species.Zhial"
+            :key="`item${key}`"
+            :class="classColor(key)"
+          >{{ item }}</li>
         </ul>
         <img src="@/assets/emblems/zhialEmblem.svg" draggable="false">
         <h3>Zhial</h3>
@@ -70,7 +69,8 @@ export default {
   props: {
     playerData: Object,
     defaultAttributes: Object,
-    toggleHighlight: Function
+    toggleHighlight: Function,
+    classColor: Function
   }
 };
 </script>

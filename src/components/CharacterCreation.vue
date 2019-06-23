@@ -5,12 +5,14 @@
       :playerData="playerData"
       :defaultAttributes="defaultAttributes"
       :toggleHighlight="toggleHighlight"
+      :classColor="classColor"
     />
     <Weapons
       :playerData="playerData"
       :defaultAttributes="defaultAttributes"
       :toggleHighlight="toggleHighlight"
       :upperCaseText="upperCaseText"
+      :classColor="classColor"
     />
     <PlayerStatChart
       :defaultAttributes="defaultAttributes"
@@ -110,8 +112,25 @@ export default {
         }
       }
       return splitString.join("");
+    },
+    classColor(key) {
+      switch (key) {
+        case `brute`:
+          return `atr-brute`;
+        case `resistance`:
+          return `atr-resist`;
+        case `life`:
+          return `atr-life`;
+        case `damage`:
+          return `atr-dmg`;
+        case `criticalHitChance`:
+          return `atr-crit`;
+        case `accuracy`:
+          return `atr-acc`;
+      }
     }
   },
+
   computed: {
     playerDataUpdate() {
       return [this.playerData.species, this.playerData.weapon];
@@ -268,7 +287,6 @@ label {
   position: absolute;
   list-style: none;
   text-decoration: none;
-  color: $mainColor;
   text-align: center;
   font-size: 1em;
 }
@@ -276,21 +294,31 @@ label {
   ul {
     height: 0;
     width: 150px;
+    display: flex;
+    justify-content: center;
     li {
       opacity: 0;
-      transition: all 0.3s ease-in-out;
+
       padding: 2px;
+      margin: 4px 10px;
+      height: max-content;
+      padding: 2px;
+      border-radius: 3px;
+      font-size: 1.2em;
     }
   }
 }
 // hovering over labl
-label:hover {
-  ul {
-    background: blue;
-    li {
-      opacity: 1;
-      transition: all 0.1s ease-in-out;
-    }
+.non-selected:hover {
+  li {
+    opacity: 0.5;
+    color: white;
+    transition: all 0.2s ease-out;
+  }
+}
+.selected:hover {
+  li {
+    opacity: 1;
   }
 }
 
@@ -304,30 +332,30 @@ label:hover {
   }
   ul {
     li {
-      opacity: 1;
       color: white;
-      text-shadow: 2px 2px 8px $inactiveLinkColor;
+      opacity: 1;
     }
   }
 }
 
 // setting attributes to correct visual colors
-.txt-low {
-  color: #a52121;
-  background-color: $backgroundColor;
-  padding: 2px;
-  border-radius: 3px;
+
+.atr-brute {
+  background-color: $brute;
 }
-.txt-mid {
-  color: goldenrod;
-  background-color: $backgroundColor;
-  padding: 2px;
-  border-radius: 3px;
+.atr-resist {
+  background-color: $resist;
 }
-.txt-high {
-  color: #86ef97;
-  background-color: $backgroundColor;
-  padding: 2px;
-  border-radius: 3px;
+.atr-life {
+  background-color: $life;
+}
+.atr-dmg {
+  background-color: $dmg;
+}
+.atr-crit {
+  background-color: $crit;
+}
+.atr-acc {
+  background-color: $acc;
 }
 </style>
