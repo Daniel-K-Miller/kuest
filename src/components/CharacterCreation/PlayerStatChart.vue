@@ -31,7 +31,16 @@ export default {
             return i;
           })
         ])
-        .range([0, this.width - this.barWidth]);
+        .range([this.padding, this.width - this.barWidth - this.padding]);
+    },
+    yScale() {
+      return d3
+        .scaleLinear()
+        .domain([0, d3.max(this.dataVal)])
+        .range(this.height - this.padding, this.padding);
+    },
+    yAxis() {
+      return d3.axisLeft(this.yScale);
     },
     dataVal() {
       return Object.values(this.playerData.attributes.species).concat(
@@ -82,6 +91,14 @@ export default {
         return this.height - this.padding / 2 + 20;
       })
       .attr("class", "txt-label");
+
+    d3.select("#chart-container")
+      .append("svg")
+      .attr("width", this.width)
+      .attr("height", this.height)
+      .append("g")
+      .attr("transform", `translate(${this.padding}, 0)`)
+      .call(this.yAxis);
   },
   watch: {
     playerDataUpdate() {
