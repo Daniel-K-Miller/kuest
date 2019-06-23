@@ -11,7 +11,8 @@ export default {
   props: {
     defaultAttributes: Object,
     playerData: Object,
-    playerDataUpdate: Array
+    playerDataUpdate: Array,
+    shortAtr: Array
   },
   data() {
     return {
@@ -36,8 +37,8 @@ export default {
     yScale() {
       return d3
         .scaleLinear()
-        .domain([0, d3.max(this.dataVal)])
-        .range(this.height - this.padding, this.padding);
+        .domain([0, 50])
+        .range([this.height - this.padding / 2, 0]);
     },
     yAxis() {
       return d3.axisLeft(this.yScale);
@@ -58,7 +59,7 @@ export default {
     d3.select("#chart-container")
       .select("svg")
       .append("svg")
-      .attr("width", 500)
+      .attr("width", 400)
       .attr("height", this.height + this.padding)
       .selectAll("rect")
       .data(this.dataVal)
@@ -79,7 +80,7 @@ export default {
 
     d3.select("svg")
       .selectAll("text")
-      .data(this.dataName)
+      .data(this.shortAtr)
       .enter()
       .append("text")
       .text(d => d)
@@ -93,12 +94,11 @@ export default {
       .attr("class", "txt-label");
 
     d3.select("#chart-container")
-      .append("svg")
-      .attr("width", this.width)
-      .attr("height", this.height)
+      .select("svg")
       .append("g")
       .attr("transform", `translate(${this.padding}, 0)`)
-      .call(this.yAxis);
+      .call(this.yAxis)
+      .attr("color", "grey");
   },
   watch: {
     playerDataUpdate() {
@@ -151,7 +151,7 @@ export default {
 @import "../../SCSS/variables";
 
 .txt-label {
-  fill: white;
+  fill: $linkColor;
 }
 
 #chart-container {

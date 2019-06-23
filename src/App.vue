@@ -13,6 +13,7 @@
       v-if="initiated === true && player.level === 0"
       :playerData="player"
       :defaultAttributes="defaultAttributes"
+      :shortAtr="shortAtr"
     />
   </div>
 </template>
@@ -59,6 +60,40 @@ export default {
   methods: {
     toggleInitiated() {
       this.initiated = true;
+    }
+  },
+  computed: {
+    shortAtr() {
+      // used to provide shorthand attribute names
+      let combo = Object.keys(this.player.attributes.species).concat(
+        Object.keys(this.player.attributes.weapon)
+      );
+
+      let array = [];
+
+      combo.forEach(d => {
+        switch (d) {
+          case `brute`:
+            array.push(`brute`);
+            break;
+          case `resistance`:
+            array.push(`resist`);
+            break;
+          case `life`:
+            array.push(`life`);
+            break;
+          case `damage`:
+            array.push(`dmg`);
+            break;
+          case `criticalHitChance`:
+            array.push(`crit`);
+            break;
+          case `accuracy`:
+            array.push(`acc`);
+            break;
+        }
+      });
+      return array;
     }
   }
 };

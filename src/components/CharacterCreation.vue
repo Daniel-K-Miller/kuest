@@ -16,6 +16,7 @@
       :defaultAttributes="defaultAttributes"
       :playerData="playerData"
       :playerDataUpdate="playerDataUpdate"
+      :shortAtr="shortAtr"
     />
     <button type="submit" id="create-character-button">Create Character</button>
   </form>
@@ -31,7 +32,8 @@ export default {
   components: { Name, Species, Weapons, PlayerStatChart },
   props: {
     playerData: Object,
-    defaultAttributes: Object
+    defaultAttributes: Object,
+    shortAtr: Array
   },
   data() {
     return {
