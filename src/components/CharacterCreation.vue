@@ -200,15 +200,16 @@ label {
   border-bottom-right-radius: 10px;
 }
 
+// label main-image dimensions
 .label-image {
   opacity: 0.3;
-  width: 200px;
+  width: $label-image-width;
 }
 .species-image {
-  height: 261px;
+  height: $species-image-height;
 }
 .weapons-image {
-  height: 200px;
+  height: $weapons-image-height;
 }
 
 .divide {
@@ -219,7 +220,7 @@ label {
 
   h3 {
     font-size: 1.2em;
-    width: 8vw;
+    width: $label-image-width;
   }
   h2 {
     color: white;
@@ -296,7 +297,7 @@ label {
 label {
   ul {
     height: 0;
-    width: 150px;
+    width: $label-image-width;
     display: flex;
     justify-content: center;
     li {
@@ -339,6 +340,9 @@ label {
       opacity: 1;
     }
   }
+  .info {
+    opacity: 1;
+  }
 }
 
 // setting attributes to correct visual colors
@@ -365,12 +369,18 @@ label {
 // css for info icon on labels
 .info {
   position: absolute;
-  width: 30px;
-  height: 30px;
-  filter: invert(1);
-  top: 160px;
-  right: 110px;
-  background-color: white;
+  width: $info;
+  height: $info;
+  left: $label-image-width - $info - 5px;
   border-radius: 50%;
+  opacity: 0;
+}
+
+#species-container .info {
+  top: $species-image-height - $info - 5px;
+}
+
+#weapon-container .info {
+  top: $weapons-image-height - $info - 5px;
 }
 </style>
