@@ -200,20 +200,23 @@ label {
   border-bottom-right-radius: 10px;
 }
 
+.label-image {
+  opacity: 0.3;
+  width: 200px;
+}
+.species-image {
+  height: 261px;
+}
+.weapons-image {
+  height: 200px;
+}
+
 .divide {
   background-color: $inactiveLinkColor;
   padding: 20px 0;
   width: 1000px;
   margin: 0 auto;
-  img {
-    width: 150px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    user-select: none;
-    background: $linkColor;
-    opacity: 0.1;
-    cursor: pointer;
-  }
+
   h3 {
     font-size: 1.2em;
     width: 8vw;
@@ -233,6 +236,9 @@ label {
     }
   }
 }
+label {
+  position: relative;
+}
 #name-container {
   background-color: lighten($backgroundColor, 4);
   display: flex;
@@ -246,9 +252,6 @@ label {
 #species-container {
   background-color: lighten($backgroundColor, 6);
 
-  img {
-    background-color: $linkColor;
-  }
   .labels-container {
     background-color: transparent;
   }
@@ -271,7 +274,7 @@ label {
   padding: 0.5em;
   border: none;
   border-radius: 5px;
-  margin-top: 20px;
+  margin: 20px 0;
 }
 #random-btn {
   background-image: url("../assets/random.svg");
@@ -357,5 +360,17 @@ label {
 }
 .atr-acc {
   background-color: $acc;
+}
+
+// css for info icon on labels
+.info {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  filter: invert(1);
+  top: 160px;
+  right: 110px;
+  background-color: white;
+  border-radius: 50%;
 }
 </style>

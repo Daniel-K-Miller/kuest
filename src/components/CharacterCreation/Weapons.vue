@@ -20,7 +20,8 @@
             :class="classColor(key)"
           >{{ item }}</li>
         </ul>
-        <img src="@/assets/weapons/weapon1.svg" draggable="false">
+        <img src="@/assets/info.svg" class="info">
+        <img src="@/assets/weapons/weapon1.svg" draggable="false" class="label-image weapons-image">
         <h3>Lepparrin's Lowertooth</h3>
       </label>
       <label :class="[ playerData.weapon === `Kurkkuin Rind` ? `selected` : `non-selected`]">
@@ -38,7 +39,8 @@
             :class="classColor(key)"
           >{{ item }}</li>
         </ul>
-        <img src="@/assets/weapons/weapon3.svg" draggable="false">
+        <img src="@/assets/info.svg" class="info">
+        <img src="@/assets/weapons/weapon3.svg" draggable="false" class="label-image weapons-image">
         <h3>Kurkkuin Rind</h3>
       </label>
       <label :class="[ playerData.weapon === `Eiliin Tears` ? `selected` : `non-selected`]">
@@ -56,7 +58,8 @@
             :class="classColor(key)"
           >{{ item }}</li>
         </ul>
-        <img src="@/assets/weapons/weapon2.svg" draggable="false">
+        <img src="@/assets/info.svg" class="info">
+        <img src="@/assets/weapons/weapon2.svg" draggable="false" class="label-image weapons-image">
         <h3>Eiliin Tears</h3>
       </label>
     </div>

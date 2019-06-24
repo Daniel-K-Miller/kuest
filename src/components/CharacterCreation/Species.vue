@@ -18,7 +18,8 @@
             :class=" classColor(key) "
           >{{ item }}</li>
         </ul>
-        <img src="@/assets/emblems/gruvatEmblem.svg" draggable="false">
+        <img src="@/assets/info.svg" class="info">
+        <img src="@/assets/emblems/gruvatEmblem.svg" draggable="false" class="label-image species-image">
         <h3>Gruvat</h3>
       </label>
       <label :class="[ playerData.species === `Tiekkot` ? `selected` : `non-selected`]">
@@ -39,7 +40,8 @@
             <!-- ternary in a ternary to only show differentiated colors when label is selected -->
           </li>
         </ul>
-        <img src="@/assets/emblems/tiekkotEmblem.svg" draggable="false">
+        <img src="@/assets/info.svg" class="info">
+        <img src="@/assets/emblems/tiekkotEmblem.svg" draggable="false" class="label-image species-image">
         <h3>Tiekkot</h3>
       </label>
       <label :class="[ playerData.species === `Zhial` ? `selected` : `non-selected`]">
@@ -57,7 +59,8 @@
             :class="classColor(key)"
           >{{ item }}</li>
         </ul>
-        <img src="@/assets/emblems/zhialEmblem.svg" draggable="false">
+        <img src="@/assets/info.svg" class="info">
+        <img src="@/assets/emblems/zhialEmblem.svg" draggable="false" class="label-image species-image">
         <h3>Zhial</h3>
       </label>
     </div>
@@ -74,3 +77,16 @@ export default {
   }
 };
 </script>
+
+<style scope lang="scss">
+.info {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  filter: invert(1);
+  top: 160px;
+  right: 110px;
+  background-color: white;
+  border-radius: 50%;
+}
+</style>
