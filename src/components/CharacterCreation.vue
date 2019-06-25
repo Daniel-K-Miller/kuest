@@ -6,6 +6,7 @@
       :defaultAttributes="defaultAttributes"
       :toggleHighlight="toggleHighlight"
       :classColor="classColor"
+      :toggleZoom="toggleZoom"
     />
     <Weapons
       :playerData="playerData"
@@ -128,6 +129,9 @@ export default {
         case `accuracy`:
           return `atr-acc`;
       }
+    },
+    toggleZoom() {
+      console.log("hello");
     }
   },
 

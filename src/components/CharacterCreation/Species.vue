@@ -18,8 +18,12 @@
             :class=" classColor(key) "
           >{{ item }}</li>
         </ul>
-        <img src="@/assets/info.svg" class="info">
-        <img src="@/assets/emblems/gruvatEmblem.svg" draggable="false" class="label-image species-image">
+        <img src="@/assets/info.svg" class="info" @click="toggleZoom">
+        <img
+          src="@/assets/emblems/gruvatEmblem.svg"
+          draggable="false"
+          class="label-image species-image"
+        >
         <h3>Gruvat</h3>
       </label>
       <label :class="[ playerData.species === `Tiekkot` ? `selected` : `non-selected`]">
@@ -41,7 +45,11 @@
           </li>
         </ul>
         <img src="@/assets/info.svg" class="info">
-        <img src="@/assets/emblems/tiekkotEmblem.svg" draggable="false" class="label-image species-image">
+        <img
+          src="@/assets/emblems/tiekkotEmblem.svg"
+          draggable="false"
+          class="label-image species-image"
+        >
         <h3>Tiekkot</h3>
       </label>
       <label :class="[ playerData.species === `Zhial` ? `selected` : `non-selected`]">
@@ -60,7 +68,11 @@
           >{{ item }}</li>
         </ul>
         <img src="@/assets/info.svg" class="info">
-        <img src="@/assets/emblems/zhialEmblem.svg" draggable="false" class="label-image species-image">
+        <img
+          src="@/assets/emblems/zhialEmblem.svg"
+          draggable="false"
+          class="label-image species-image"
+        >
         <h3>Zhial</h3>
       </label>
     </div>
@@ -73,7 +85,8 @@ export default {
     playerData: Object,
     defaultAttributes: Object,
     toggleHighlight: Function,
-    classColor: Function
+    classColor: Function,
+    toggleZoom: Function
   }
 };
 </script>
