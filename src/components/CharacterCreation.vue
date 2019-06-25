@@ -229,18 +229,22 @@ label {
   h2 {
     color: white;
   }
-  .labels-container {
-    display: flex;
-    background-color: $inactiveLinkColor;
-    width: max-content;
-    height: max-content;
-    border-radius: 10px;
-    margin: 0 auto;
-    h3 {
-      border-radius: 5px;
-    }
+}
+.labels-container {
+  display: flex;
+  justify-content: center;
+}
+.label-container {
+  display: flex;
+  background-color: transparent;
+  width: max-content;
+  height: max-content;
+  border-radius: 10px;
+  h3 {
+    border-radius: 5px;
   }
 }
+
 label {
   position: relative;
 }
@@ -256,19 +260,12 @@ label {
 }
 #species-container {
   background-color: lighten($backgroundColor, 6);
-
-  .labels-container {
-    background-color: transparent;
-  }
 }
 
 #weapon-container {
   background-color: lighten($backgroundColor, 7);
   img {
     background-color: $inactiveLinkColor;
-  }
-  .labels-container {
-    background-color: transparent;
   }
 }
 

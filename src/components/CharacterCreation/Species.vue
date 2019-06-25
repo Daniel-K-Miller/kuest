@@ -2,79 +2,32 @@
   <div id="species-container" class="divide">
     <h2>Select Species</h2>
     <div class="labels-container">
-      <label :class="[ playerData.species === `Gruvat` ? `selected` : `non-selected`]">
-        <input
-          type="radio"
-          name="species"
-          value="Gruvat"
-          v-model="playerData.species"
-          @click="toggleHighlight"
-          required
-        >
-        <ul class="stats">
-          <li
-            v-for="(item, key) in defaultAttributes.species.Gruvat"
-            :key="`item${key}`"
-            :class=" classColor(key) "
-          >{{ item }}</li>
-        </ul>
-        <img src="@/assets/info.svg" class="info" @click="toggleZoom">
-        <img
-          src="@/assets/emblems/gruvatEmblem.svg"
-          draggable="false"
-          class="label-image species-image"
-        >
-        <h3>Gruvat</h3>
-      </label>
-      <label :class="[ playerData.species === `Tiekkot` ? `selected` : `non-selected`]">
-        <input
-          type="radio"
-          name="species"
-          value="Tiekkot"
-          v-model="playerData.species"
-          @click="toggleHighlight"
-        >
-        <ul class="stats">
-          <li
-            v-for="(item, key) in defaultAttributes.species.Tiekkot"
-            :key="`item${key}`"
-            :class="classColor(key)"
+      <div class="label-container" v-for="(item, key) in defaultAttributes.species">
+        <label :class="[ playerData.species === key ? `selected` : `non-selected`]">
+          <input
+            type="radio"
+            name="species"
+            :value="key"
+            v-model="playerData.species"
+            @click="toggleHighlight"
+            required
           >
-            {{ item }}
-            <!-- ternary in a ternary to only show differentiated colors when label is selected -->
-          </li>
-        </ul>
-        <img src="@/assets/info.svg" class="info">
-        <img
-          src="@/assets/emblems/tiekkotEmblem.svg"
-          draggable="false"
-          class="label-image species-image"
-        >
-        <h3>Tiekkot</h3>
-      </label>
-      <label :class="[ playerData.species === `Zhial` ? `selected` : `non-selected`]">
-        <input
-          type="radio"
-          name="species"
-          value="Zhial"
-          v-model="playerData.species"
-          @click="toggleHighlight"
-        >
-        <ul class="stats">
-          <li
-            v-for="(item, key) in defaultAttributes.species.Zhial"
-            :key="`item${key}`"
-            :class="classColor(key)"
-          >{{ item }}</li>
-        </ul>
-        <img src="@/assets/info.svg" class="info">
-        <img
-          src="@/assets/emblems/zhialEmblem.svg"
-          draggable="false"
-          class="label-image species-image"
-        >
-        <h3>Zhial</h3>
-      </label>
+          <ul class="stats">
+            <li
+              v-for="(item, key) in defaultAttributes.species[key]"
+              :key="`item${key}`"
+              :class=" classColor(key) "
+            >{{ item }}</li>
+          </ul>
+          <img src="@/assets/info.svg" class="info" @click="toggleZoom">
+          <img
+            v-bind:src="require(`@/assets/emblems/${key}Emblem.svg`)"
+            draggable="false"
+            class="label-image species-image"
+          >
+          <h3>{{key}}</h3>
+        </label>
+      </div>
     </div>
   </div>
 </template>
