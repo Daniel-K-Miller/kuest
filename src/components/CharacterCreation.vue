@@ -102,19 +102,6 @@ export default {
       this.playerData.species = newPlayerData.species;
       this.playerData.weapon = newPlayerData.weapon;
     },
-
-    // checking for a capital leter then after returning true inserting a space before it
-    upperCaseText(string) {
-      let splitString = string.slice(0).split("");
-
-      // i set to 1 to skip first as no need for beginning to need a space before
-      for (let i = 1; i < string.length; i++) {
-        if (splitString[i] === splitString[i].toUpperCase()) {
-          splitString[i - 1] += ` `;
-        }
-      }
-      return splitString.join("");
-    },
     classColor(key) {
       switch (key) {
         case `brute`:
@@ -135,7 +122,6 @@ export default {
       console.log("hello");
     }
   },
-
   computed: {
     playerDataUpdate() {
       return [this.playerData.species, this.playerData.weapon];
@@ -183,44 +169,13 @@ export default {
   border-radius: 20px;
 }
 
-// Radio buttom image styling
-[type="radio"] {
-  position: absolute;
-  opacity: 0;
-}
-[type="radio"] + img {
-  cursor: pointer;
-}
-[type="radio"]:checked + img {
-  box-shadow: 0 0 20px $mainColor;
-  border-radius: 10px;
-}
-
-label {
-  background-color: $backgroundColor;
-  margin: 10px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-}
-
-// label main-image dimensions
-.label-image {
-  opacity: 0.3;
-  width: $label-image-width;
-}
-.species-image {
-  height: $species-image-height;
-}
-.weapon-image {
-  height: $weapon-image-height;
-}
+// sub-component containers
 
 .divide {
   background-color: $inactiveLinkColor;
   padding: 20px 0;
   width: 1000px;
   margin: 0 auto;
-
   h3 {
     font-size: 1.2em;
     width: $label-image-width;
@@ -229,35 +184,8 @@ label {
     color: white;
   }
 }
-.labels-container {
-  display: flex;
-  justify-content: center;
-}
-.label-container {
-  display: flex;
-  background-color: transparent;
-  width: max-content;
-  height: max-content;
-  border-radius: 10px;
-  h3 {
-    border-radius: 5px;
-  }
-}
 
-label {
-  position: relative;
-}
-
-#species-container {
-  background-color: lighten($backgroundColor, 6);
-}
-
-#weapon-container {
-  background-color: lighten($backgroundColor, 7);
-  img {
-    background-color: $inactiveLinkColor;
-  }
-}
+// button at bottom of page to create character
 
 #create-character-button {
   background-color: $inactiveLinkColor;
@@ -267,121 +195,5 @@ label {
   border: none;
   border-radius: 5px;
   margin: 20px 0;
-}
-#random-btn {
-  background-image: url("../assets/random.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 75%;
-  border: none;
-  width: 30px;
-  height: 30px;
-  background-color: $linkColor;
-}
-.stats {
-  position: absolute;
-  list-style: none;
-  text-decoration: none;
-  text-align: center;
-  font-size: 1em;
-}
-label {
-  ul {
-    height: 0;
-    width: $label-image-width;
-    display: flex;
-    justify-content: center;
-    li {
-      opacity: 0;
-
-      padding: 2px;
-      margin: 4px 10px;
-      height: max-content;
-      padding: 2px;
-      border-radius: 3px;
-      font-size: 1.2em;
-    }
-  }
-}
-// hovering over labl
-.non-selected:hover {
-  li {
-    opacity: 0.5;
-    color: white;
-    transition: all 0.2s ease-out;
-  }
-}
-.selected:hover {
-  li {
-    opacity: 1;
-  }
-}
-
-.selected {
-  cursor: pointer;
-  h3 {
-    color: white;
-  }
-  img {
-    opacity: 1;
-  }
-  ul {
-    li {
-      color: white;
-      opacity: 1;
-    }
-  }
-  .info {
-    opacity: 1;
-  }
-}
-.info {
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  filter: invert(1);
-  top: 160px;
-  right: 110px;
-  background-color: white;
-  border-radius: 50%;
-}
-
-// setting attributes to correct visual colors
-
-.atr-brute {
-  background-color: $brute;
-}
-.atr-resist {
-  background-color: $resist;
-}
-.atr-life {
-  background-color: $life;
-}
-.atr-dmg {
-  background-color: $dmg;
-}
-.atr-crit {
-  background-color: $crit;
-}
-.atr-acc {
-  background-color: $acc;
-}
-
-// css for info icon on labels
-.info {
-  position: absolute;
-  width: $info;
-  height: $info;
-  left: $label-image-width - $info - 5px;
-  border-radius: 50%;
-  opacity: 0;
-}
-
-#species-container .info {
-  top: $species-image-height - $info - 5px;
-}
-
-#weapon-container .info {
-  top: $weapon-image-height - $info - 5px;
 }
 </style>

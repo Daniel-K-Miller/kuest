@@ -64,4 +64,155 @@ export default {
 </script>
 
 <style scope lang="scss">
+@import "../../SCSS/variables";
+
+#species-container {
+  background-color: lighten($backgroundColor, 6);
+  .info {
+    top: $species-image-height - $info - 5px;
+  }
+}
+
+#weapon-container {
+  background-color: lighten($backgroundColor, 7);
+  img {
+    background-color: $inactiveLinkColor;
+  }
+  .info {
+    top: $weapon-image-height - $info - 5px;
+  }
+}
+
+label {
+  background-color: $backgroundColor;
+  margin: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  position: relative;
+
+  .label-image {
+    opacity: 0.3;
+    width: $label-image-width;
+  }
+  .species-image {
+    height: $species-image-height;
+  }
+  .weapon-image {
+    height: $weapon-image-height;
+  }
+  // Radio buttom image styling
+  [type="radio"] {
+    position: absolute;
+    opacity: 0;
+  }
+  [type="radio"] + img {
+    cursor: pointer;
+  }
+  [type="radio"]:checked + img {
+    box-shadow: 0 0 20px $mainColor;
+    border-radius: 10px;
+  }
+  .stats {
+    position: absolute;
+    list-style: none;
+    text-decoration: none;
+    text-align: center;
+    font-size: 1em;
+  }
+  ul {
+    height: 0;
+    width: $label-image-width;
+    display: flex;
+    justify-content: center;
+    li {
+      opacity: 0;
+      padding: 2px;
+      margin: 4px 10px;
+      height: max-content;
+      padding: 2px;
+      border-radius: 3px;
+      font-size: 1.2em;
+    }
+  }
+}
+
+.labels-container {
+  display: flex;
+  justify-content: center;
+  .label-container {
+    display: flex;
+    background-color: transparent;
+    width: max-content;
+    height: max-content;
+    border-radius: 10px;
+    h3 {
+      border-radius: 5px;
+    }
+  }
+  .selected {
+    cursor: pointer;
+    h3 {
+      color: white;
+    }
+    img {
+      opacity: 1;
+    }
+    ul {
+      li {
+        color: white;
+        opacity: 1;
+      }
+    }
+    .info {
+      opacity: 1;
+    }
+  }
+  // hovering over labl
+  .non-selected:hover {
+    li {
+      opacity: 0.5;
+      color: white;
+      transition: all 0.2s ease-out;
+    }
+  }
+  .selected:hover {
+    li {
+      opacity: 1;
+    }
+  }
+}
+
+// TODO: put in parent CSS
+.info {
+  position: absolute;
+  width: $info;
+  height: $info;
+  filter: invert(1);
+  left: $label-image-width - $info - 5px;
+  top: 160px;
+  right: 110px;
+  background-color: white;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+// TODO: put in parent CSS
+.atr-brute {
+  background-color: $brute;
+}
+.atr-resist {
+  background-color: $resist;
+}
+.atr-life {
+  background-color: $life;
+}
+.atr-dmg {
+  background-color: $dmg;
+}
+.atr-crit {
+  background-color: $crit;
+}
+.atr-acc {
+  background-color: $acc;
+}
 </style>

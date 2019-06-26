@@ -1,5 +1,5 @@
 <template>
-  <div id="chart-container">
+  <div id="chart-container" class="divide">
     <svg :width="width" :height="175"></svg>
   </div>
 </template>
@@ -155,18 +155,8 @@ export default {
 }
 
 #chart-container {
-  width: 1000px;
-  margin: 0 auto;
   background-color: lighten($backgroundColor, 10);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  padding: 40px 0;
-
-  img {
-    background-color: $inactiveLinkColor;
-  }
-  .labels-container {
-    background-color: transparent;
-  }
 }
 </style>

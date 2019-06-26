@@ -29,4 +29,15 @@ export default {
     font-size: 1em;
   }
 }
+
+#random-btn {
+  background-image: url("../../assets/random.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 75%;
+  border: none;
+  width: 30px;
+  height: 30px;
+  background-color: $linkColor;
+}
 </style>
