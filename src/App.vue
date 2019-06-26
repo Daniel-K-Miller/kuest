@@ -32,7 +32,7 @@ export default {
       player: {
         name: "",
         species: "",
-        weapon: "",
+        weapons: "",
         level: 0,
         attributes: {
           species: { brute: 0, resistance: 0, life: 0 },

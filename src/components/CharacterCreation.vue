@@ -29,13 +29,11 @@
 
 <script>
 import Name from "@/components/CharacterCreation/Name.vue";
-import Species from "@/components/CharacterCreation/Species.vue";
-import Weapons from "@/components/CharacterCreation/Weapons.vue";
 import PlayerStatChart from "@/components/CharacterCreation/PlayerStatChart.vue";
 import Selection from "@/components/CharacterCreation/Selection.vue";
 
 export default {
-  components: { Name, Species, Weapons, PlayerStatChart, Selection },
+  components: { Name, Selection, PlayerStatChart },
   props: {
     playerData: Object,
     defaultAttributes: Object,
@@ -96,13 +94,13 @@ export default {
       while (
         this.playerData.name === newPlayerData.name &&
         this.playerData.species === newPlayerData.species &&
-        this.playerData.weapon === newPlayerData.weapon
+        this.playerData.weapons === newPlayerData.weapon
       ) {
         getRandomValues();
       }
       this.playerData.name = newPlayerData.name;
       this.playerData.species = newPlayerData.species;
-      this.playerData.weapon = newPlayerData.weapon;
+      this.playerData.weapons = newPlayerData.weapon;
     },
 
     // checking for a capital leter then after returning true inserting a space before it
@@ -140,7 +138,7 @@ export default {
 
   computed: {
     playerDataUpdate() {
-      return [this.playerData.species, this.playerData.weapon];
+      return [this.playerData.species, this.playerData.weapons];
     }
   },
   watch: {
@@ -160,17 +158,17 @@ export default {
       }
 
       if (newVal[1] === "Lepparrin's Lowertooth") {
-        this.playerData.attributes.weapon.damage = 30;
-        this.playerData.attributes.weapon.criticalHitChance = 50;
-        this.playerData.attributes.weapon.accuracy = 10;
+        this.playerData.attributes.weapons.damage = 30;
+        this.playerData.attributes.weapons.criticalHitChance = 50;
+        this.playerData.attributes.weapons.accuracy = 10;
       } else if (newVal[1] === "Eiliin Tears") {
-        this.playerData.attributes.weapon.damage = 10;
-        this.playerData.attributes.weapon.criticalHitChance = 30;
-        this.playerData.attributes.weapon.accuracy = 50;
+        this.playerData.attributes.weapons.damage = 10;
+        this.playerData.attributes.weapons.criticalHitChance = 30;
+        this.playerData.attributes.weapons.accuracy = 50;
       } else if (newVal[1] === "Kurkkuin Rind") {
-        this.playerData.attributes.weapon.damage = 50;
-        this.playerData.attributes.weapon.criticalHitChance = 10;
-        this.playerData.attributes.weapon.accuracy = 30;
+        this.playerData.attributes.weapons.damage = 50;
+        this.playerData.attributes.weapons.criticalHitChance = 10;
+        this.playerData.attributes.weapons.accuracy = 30;
       }
     }
   }
