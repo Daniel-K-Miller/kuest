@@ -1,19 +1,21 @@
 <template>
   <form id="main-container" @submit.prevent="handleSubmit">
     <Name :playerData="playerData" :handleRandom="handleRandom"/>
-    <Species
+    <Selection
+      version="species"
       :playerData="playerData"
       :defaultAttributes="defaultAttributes"
       :toggleHighlight="toggleHighlight"
       :classColor="classColor"
       :toggleZoom="toggleZoom"
     />
-    <Weapons
+    <Selection
+      version="weapons"
       :playerData="playerData"
       :defaultAttributes="defaultAttributes"
       :toggleHighlight="toggleHighlight"
-      :upperCaseText="upperCaseText"
       :classColor="classColor"
+      :toggleZoom="toggleZoom"
     />
     <PlayerStatChart
       :defaultAttributes="defaultAttributes"
@@ -30,9 +32,10 @@ import Name from "@/components/CharacterCreation/Name.vue";
 import Species from "@/components/CharacterCreation/Species.vue";
 import Weapons from "@/components/CharacterCreation/Weapons.vue";
 import PlayerStatChart from "@/components/CharacterCreation/PlayerStatChart.vue";
+import Selection from "@/components/CharacterCreation/Selection.vue";
 
 export default {
-  components: { Name, Species, Weapons, PlayerStatChart },
+  components: { Name, Species, Weapons, PlayerStatChart, Selection },
   props: {
     playerData: Object,
     defaultAttributes: Object,
@@ -177,10 +180,12 @@ export default {
 <style lang="scss">
 @import "../SCSS/variables";
 
+// Component container
 #main-container {
   border-radius: 20px;
 }
 
+// Radio buttom image styling
 [type="radio"] {
   position: absolute;
   opacity: 0;
@@ -191,10 +196,6 @@ export default {
 [type="radio"]:checked + img {
   box-shadow: 0 0 20px $mainColor;
   border-radius: 10px;
-}
-input {
-  background: white;
-  font-size: 1em;
 }
 
 label {
@@ -248,21 +249,12 @@ label {
 label {
   position: relative;
 }
-#name-container {
-  background-color: lighten($backgroundColor, 4);
-  display: flex;
-  justify-content: center;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  input {
-    margin-left: 10px;
-  }
-}
+
 #species-container {
   background-color: lighten($backgroundColor, 6);
 }
 
-#weapon-container {
+#weapons-container {
   background-color: lighten($backgroundColor, 7);
   img {
     background-color: $inactiveLinkColor;
@@ -344,6 +336,16 @@ label {
   .info {
     opacity: 1;
   }
+}
+.info {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  filter: invert(1);
+  top: 160px;
+  right: 110px;
+  background-color: white;
+  border-radius: 50%;
 }
 
 // setting attributes to correct visual colors
