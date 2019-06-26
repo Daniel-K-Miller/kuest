@@ -32,7 +32,7 @@ export default {
       player: {
         name: "",
         species: "",
-        weapons: "",
+        weapon: "",
         level: 0,
         attributes: {
           species: { brute: 0, resistance: 0, life: 0 },
@@ -45,7 +45,7 @@ export default {
           Tiekkot: { brute: 30, resistance: 50, life: 10 },
           Zhial: { brute: 10, resistance: 30, life: 50 }
         },
-        weapons: {
+        weapon: {
           "Lepparrin's Lowertooth": {
             damage: 30,
             criticalHitChance: 50,

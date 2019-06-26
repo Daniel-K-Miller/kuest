@@ -10,7 +10,7 @@
       :toggleZoom="toggleZoom"
     />
     <Selection
-      version="weapons"
+      version="weapon"
       :playerData="playerData"
       :defaultAttributes="defaultAttributes"
       :toggleHighlight="toggleHighlight"
@@ -78,9 +78,9 @@ export default {
               Math.random() * Object.keys(this.defaultAttributes.species).length
             )
           ],
-          weapon: Object.keys(this.defaultAttributes.weapons)[
+          weapon: Object.keys(this.defaultAttributes.weapon)[
             Math.floor(
-              Math.random() * Object.keys(this.defaultAttributes.weapons).length
+              Math.random() * Object.keys(this.defaultAttributes.weapon).length
             )
           ]
         });
@@ -94,13 +94,13 @@ export default {
       while (
         this.playerData.name === newPlayerData.name &&
         this.playerData.species === newPlayerData.species &&
-        this.playerData.weapons === newPlayerData.weapon
+        this.playerData.weapon === newPlayerData.weapon
       ) {
         getRandomValues();
       }
       this.playerData.name = newPlayerData.name;
       this.playerData.species = newPlayerData.species;
-      this.playerData.weapons = newPlayerData.weapon;
+      this.playerData.weapon = newPlayerData.weapon;
     },
 
     // checking for a capital leter then after returning true inserting a space before it
@@ -138,7 +138,7 @@ export default {
 
   computed: {
     playerDataUpdate() {
-      return [this.playerData.species, this.playerData.weapons];
+      return [this.playerData.species, this.playerData.weapon];
     }
   },
   watch: {
@@ -158,17 +158,17 @@ export default {
       }
 
       if (newVal[1] === "Lepparrin's Lowertooth") {
-        this.playerData.attributes.weapons.damage = 30;
-        this.playerData.attributes.weapons.criticalHitChance = 50;
-        this.playerData.attributes.weapons.accuracy = 10;
+        this.playerData.attributes.weapon.damage = 30;
+        this.playerData.attributes.weapon.criticalHitChance = 50;
+        this.playerData.attributes.weapon.accuracy = 10;
       } else if (newVal[1] === "Eiliin Tears") {
-        this.playerData.attributes.weapons.damage = 10;
-        this.playerData.attributes.weapons.criticalHitChance = 30;
-        this.playerData.attributes.weapons.accuracy = 50;
+        this.playerData.attributes.weapon.damage = 10;
+        this.playerData.attributes.weapon.criticalHitChance = 30;
+        this.playerData.attributes.weapon.accuracy = 50;
       } else if (newVal[1] === "Kurkkuin Rind") {
-        this.playerData.attributes.weapons.damage = 50;
-        this.playerData.attributes.weapons.criticalHitChance = 10;
-        this.playerData.attributes.weapons.accuracy = 30;
+        this.playerData.attributes.weapon.damage = 50;
+        this.playerData.attributes.weapon.criticalHitChance = 10;
+        this.playerData.attributes.weapon.accuracy = 30;
       }
     }
   }
@@ -211,8 +211,8 @@ label {
 .species-image {
   height: $species-image-height;
 }
-.weapons-image {
-  height: $weapons-image-height;
+.weapon-image {
+  height: $weapon-image-height;
 }
 
 .divide {
@@ -252,7 +252,7 @@ label {
   background-color: lighten($backgroundColor, 6);
 }
 
-#weapons-container {
+#weapon-container {
   background-color: lighten($backgroundColor, 7);
   img {
     background-color: $inactiveLinkColor;
@@ -382,6 +382,6 @@ label {
 }
 
 #weapon-container .info {
-  top: $weapons-image-height - $info - 5px;
+  top: $weapon-image-height - $info - 5px;
 }
 </style>

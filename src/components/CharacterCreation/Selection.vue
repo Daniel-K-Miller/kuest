@@ -50,7 +50,7 @@ export default {
     getImages(version, key, index) {
       if (version === `species`) {
         return require(`@/assets/emblems/${key}Emblem.svg`);
-      } else if (version === `weapons`) {
+      } else if (version === `weapon`) {
         return require(`@/assets/weapons/weapon${index + 1}.svg`);
       }
     }
