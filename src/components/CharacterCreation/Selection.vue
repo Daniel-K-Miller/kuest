@@ -23,7 +23,7 @@
               :class=" classColor(key) "
             >{{ item }}</li>
           </ul>
-          <img src="@/assets/info.svg" class="info" @click="toggleZoom">
+          <img src="@/assets/info.svg" class="info" @click="( (e) => toggleZoom(e))">
           <img
             :src="getImages(version, key, index)"
             draggable="false"

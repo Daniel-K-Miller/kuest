@@ -24,6 +24,11 @@
       :shortAtr="shortAtr"
     />
     <button type="submit" id="create-character-button">Create Character</button>
+    <FullScreen
+      :imgSrc="fullScreen.image"
+      v-if="fullScreen.toggle === true"
+      :toggleZoom="toggleZoom"
+    />
   </form>
 </template>
 
@@ -31,9 +36,10 @@
 import Name from "@/components/CharacterCreation/Name.vue";
 import PlayerStatChart from "@/components/CharacterCreation/PlayerStatChart.vue";
 import Selection from "@/components/CharacterCreation/Selection.vue";
+import FullScreen from "@/components/CharacterCreation/FullScreen.vue";
 
 export default {
-  components: { Name, Selection, PlayerStatChart },
+  components: { Name, Selection, PlayerStatChart, FullScreen },
   props: {
     playerData: Object,
     defaultAttributes: Object,
@@ -41,7 +47,8 @@ export default {
   },
   data() {
     return {
-      prevRandomValue: {}
+      prevRandomValue: {},
+      fullScreen: { toggle: false, image: undefined }
     };
   },
   methods: {
@@ -118,8 +125,14 @@ export default {
           return `atr-acc`;
       }
     },
-    toggleZoom() {
-      console.log("hello");
+    toggleZoom(e, test) {
+      if (e) {
+        this.fullScreen.toggle = true;
+        this.fullScreen.image = e.srcElement.nextSibling.src;
+      } else if (!e) {
+        this.fullScreen.toggle = false;
+        this.fullScreen.image = undefined;
+      }
     }
   },
   computed: {
@@ -170,7 +183,6 @@ export default {
 }
 
 // sub-component containers
-
 .divide {
   background-color: $inactiveLinkColor;
   padding: 20px 0;
@@ -186,7 +198,6 @@ export default {
 }
 
 // button at bottom of page to create character
-
 #create-character-button {
   background-color: $inactiveLinkColor;
   color: $mainColor;
