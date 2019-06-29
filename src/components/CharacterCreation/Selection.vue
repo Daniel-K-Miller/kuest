@@ -23,7 +23,7 @@
               :class=" classColor(key) "
             >{{ item }}</li>
           </ul>
-          <img src="@/assets/info.svg" class="info" @click="( (e) => toggleZoom(e))">
+          <img src="@/assets/zoomIn.svg" class="info" @click="( (e) => toggleZoom(e))">
           <img
             :src="getImages(version, key, index)"
             draggable="false"
@@ -164,7 +164,11 @@ label {
       }
     }
     .info {
-      opacity: 1;
+      opacity: 0.5;
+      transform: rotate(90deg);
+      &:hover {
+        opacity: 1;
+      }
     }
   }
   // hovering over labl
@@ -192,7 +196,6 @@ label {
   top: 160px;
   right: 110px;
   background-color: white;
-  border-radius: 50%;
   opacity: 0;
 }
 
