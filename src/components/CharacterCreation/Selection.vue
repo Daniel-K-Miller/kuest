@@ -18,7 +18,7 @@
           >
           <ul class="stats">
             <li
-              v-for="(item, key) in defaultAttributes[version][key]"
+              v-for="(item, key) in defaultAttributes[version][key][stats]"
               :key="`item${key}`"
               :class=" classColor(key) "
             >{{ item }}</li>
@@ -44,7 +44,8 @@ export default {
     toggleHighlight: Function,
     classColor: Function,
     toggleZoom: Function,
-    version: String
+    version: String,
+    stats: Object
   },
   methods: {
     getImages(version, key, index) {

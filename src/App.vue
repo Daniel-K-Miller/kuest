@@ -41,18 +41,37 @@ export default {
       },
       defaultAttributes: {
         species: {
-          Gruvat: { brute: 50, resistance: 30, life: 10 },
-          Tiekkot: { brute: 30, resistance: 50, life: 10 },
-          Zhial: { brute: 10, resistance: 30, life: 50 }
+          Gruvat: {
+            stats: { brute: 50, resistance: 30, life: 10 },
+            description: "A race of aggressive little monsters."
+          },
+          Tiekkot: {
+            stats: { brute: 30, resistance: 50, life: 10 },
+            description:
+              "A defensive species made to harness the power of unity."
+          },
+          Zhial: {
+            stats: { brute: 10, resistance: 30, life: 50 },
+            description: "A unknown race harnessing a weird type of magic."
+          }
         },
         weapon: {
           "Lepparrin's Lowertooth": {
-            damage: 30,
-            criticalHitChance: 50,
-            accuracy: 10
+            stats: {
+              damage: 30,
+              criticalHitChance: 50,
+              accuracy: 10
+            },
+            description: "A nice little blade."
           },
-          "Kurkkuin Rind": { damage: 50, criticalHitChance: 10, accuracy: 30 },
-          "Eiliin Tears": { damage: 10, criticalHitChance: 30, accuracy: 50 }
+          "Kurkkuin Rind": {
+            stats: { damage: 50, criticalHitChance: 10, accuracy: 30 },
+            description: "A nice little hide."
+          },
+          "Eiliin Tears": {
+            stats: { damage: 10, criticalHitChance: 30, accuracy: 50 },
+            description: "A nice little bunch of magical orbs."
+          }
         }
       }
     };
