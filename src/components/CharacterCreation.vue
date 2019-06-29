@@ -1,6 +1,6 @@
 <template>
   <form id="main-container" @submit.prevent="handleSubmit">
-    <Name :playerData="playerData" :handleRandom="handleRandom"/>
+    <Name :playerData="playerData" :handleRandom="handleRandom" />
     <Selection
       version="species"
       :playerData="playerData"
@@ -28,6 +28,7 @@
       :imgSrc="fullScreen.image"
       v-if="fullScreen.toggle === true"
       :toggleZoom="toggleZoom"
+      :selection="fullScreen.selection"
     />
   </form>
 </template>
@@ -48,7 +49,7 @@ export default {
   data() {
     return {
       prevRandomValue: {},
-      fullScreen: { toggle: false, image: undefined }
+      fullScreen: { toggle: false, image: undefined, selection: undefined }
     };
   },
   methods: {
@@ -125,13 +126,17 @@ export default {
           return `atr-acc`;
       }
     },
-    toggleZoom(e, test) {
+    toggleZoom(e, key) {
       if (e) {
         this.fullScreen.toggle = true;
         this.fullScreen.image = e.srcElement.nextSibling.src;
+        this.fullScreen.selection = key;
+        document.body.style.overflow = "hidden";
       } else if (!e) {
         this.fullScreen.toggle = false;
         this.fullScreen.image = undefined;
+        this.fullScreen.selection = undefined;
+        document.body.style.overflow = "visible";
       }
     }
   },

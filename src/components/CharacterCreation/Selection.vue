@@ -15,7 +15,7 @@
             v-model="playerData[version]"
             @click="toggleHighlight"
             required
-          >
+          />
           <ul class="stats">
             <li
               v-for="(item, key) in defaultAttributes[version][key]"
@@ -23,12 +23,12 @@
               :class=" classColor(key) "
             >{{ item }}</li>
           </ul>
-          <img src="@/assets/zoomIn.svg" class="info" @click="( (e) => toggleZoom(e))">
+          <img src="@/assets/zoomIn.svg" class="info" @click="( (e) => toggleZoom(e, key))" />
           <img
             :src="getImages(version, key, index)"
             draggable="false"
             :class=" `label-image ${version}-image` "
-          >
+          />
           <h3>{{key}}</h3>
         </label>
       </div>

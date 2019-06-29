@@ -4,11 +4,10 @@
       <div id="image-container">
         <img :src="imgSrc" id="zoomedImg" />
       </div>
-
-      <img src="@/assets/zoomOut.svg" class="info" @click="toggleZoom()" draggable="false" />
       <div id="text-container">
-        <p>Hello there and welcome to the text seo there and welcome to the text seo there and welcome to the text seo there and welcome to the text seo there and welcome to the text seo there and welcome to the text seo there and welcome to the text seo there and welcome to the text seo there and welcome to the text seo there and welcome to the text seo there and welcome to the text seo there and welcome to the text section</p>
+        <h1>{{ selection }}</h1>
       </div>
+      <img src="@/assets/zoomOut.svg" class="info" @click="toggleZoom()" draggable="false" />
     </div>
   </div>
 </template>
@@ -17,12 +16,18 @@
 export default {
   props: {
     imgSrc: String,
-    toggleZoom: Function
+    toggleZoom: Function,
+    selection: String
   },
   data() {
     return {
       test: 1
     };
+  },
+  methods: {
+    selectContent() {
+      return this.selection === "Gruvat" ? `Gruvat` : ``;
+    }
   }
 };
 </script>
@@ -75,5 +80,15 @@ export default {
 #text-container {
   background-color: $inactiveLinkColor;
   color: white;
+  text-align: justify;
+  width: 50vw;
+  :first-child {
+    margin-top: 10px;
+  }
+  p,
+  h1,
+  h2 {
+    margin: 10px 20px;
+  }
 }
 </style>
