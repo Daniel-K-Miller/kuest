@@ -29,6 +29,7 @@
       v-if="fullScreen.toggle === true"
       :toggleZoom="toggleZoom"
       :selection="fullScreen.selection"
+      :defaultAttributes="defaultAttributes"
     />
   </form>
 </template>

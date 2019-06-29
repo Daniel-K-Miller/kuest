@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img id="kuest-title" src="@/assets/title/title.svg" draggable="false">
+    <img id="kuest-title" src="@/assets/title/title.svg" draggable="false" />
 
     <!-- Starting Screen -->
     <LandingContent
@@ -43,16 +43,18 @@ export default {
         species: {
           Gruvat: {
             stats: { brute: 50, resistance: 30, life: 10 },
-            description: "A race of aggressive little monsters."
+            description:
+              "A highly volatile species, if they sense danger they will not hesitate to attack."
           },
           Tiekkot: {
             stats: { brute: 30, resistance: 50, life: 10 },
             description:
-              "A defensive species made to harness the power of unity."
+              "Protectors of the snow like ridden fields, using the wilderness to their advantage, a species that is one with nature."
           },
           Zhial: {
             stats: { brute: 10, resistance: 30, life: 50 },
-            description: "A unknown race harnessing a weird type of magic."
+            description:
+              "An unknown race harnessing a weird type of magic, some say they are just anomalies in the universe."
           }
         },
         weapon: {

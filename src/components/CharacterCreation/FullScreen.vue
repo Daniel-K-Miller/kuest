@@ -6,6 +6,7 @@
       </div>
       <div id="text-container">
         <h1>{{ selection }}</h1>
+        <h2>{{ description }}</h2>
       </div>
       <img src="@/assets/zoomOut.svg" class="info" @click="toggleZoom()" draggable="false" />
     </div>
@@ -17,16 +18,16 @@ export default {
   props: {
     imgSrc: String,
     toggleZoom: Function,
-    selection: String
+    selection: String,
+    defaultAttributes: Object
   },
-  data() {
-    return {
-      test: 1
-    };
-  },
-  methods: {
-    selectContent() {
-      return this.selection === "Gruvat" ? `Gruvat` : ``;
+  computed: {
+    description() {
+      return this.selection === "Gruvat" ||
+        this.selection === "Tiekkot" ||
+        this.selection === "Zhial"
+        ? this.defaultAttributes.species[this.selection].description
+        : this.defaultAttributes.weapon[this.selection].description;
     }
   }
 };
