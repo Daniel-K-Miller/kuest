@@ -169,9 +169,10 @@ label {
     }
     .info {
       opacity: 0.5;
-      transform: rotate(90deg);
+
       &:hover {
         opacity: 1;
+        transform: scale(1.2);
       }
     }
   }

@@ -64,15 +64,18 @@ export default {
               criticalHitChance: 50,
               accuracy: 10
             },
-            description: "A nice little blade."
+            description:
+              "Broken from the beast, consider this a consilation for your eventual demise. You will be hunted."
           },
           "Kurkkuin Rind": {
             stats: { damage: 50, criticalHitChance: 10, accuracy: 30 },
-            description: "A nice little hide."
+            description:
+              "A reinforced barrier used to separate friends from foes. Repurposed as a wearable plate offering protection against danger."
           },
           "Eiliin Tears": {
             stats: { damage: 10, criticalHitChance: 30, accuracy: 50 },
-            description: "A nice little bunch of magical orbs."
+            description:
+              "Ripples from the abyss collected by generations of harvesters. Not by choice, as the afflictions are ever binding."
           }
         }
       }

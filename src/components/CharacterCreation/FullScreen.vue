@@ -7,6 +7,7 @@
       <div id="text-container">
         <h1>{{ selection }}</h1>
         <h2>{{ description }}</h2>
+        <p>{{ paragraph }}</p>
       </div>
       <img src="@/assets/zoomOut.svg" class="info" @click="toggleZoom()" draggable="false" />
     </div>
@@ -28,6 +29,22 @@ export default {
         this.selection === "Zhial"
         ? this.defaultAttributes.species[this.selection].description
         : this.defaultAttributes.weapon[this.selection].description;
+    },
+    paragraph() {
+      switch (this.selection) {
+        case "Gruvat":
+          return `Mr Gruvat reporting in`;
+        case "Tiekkot":
+          return `hello Mr. Tiekkot`;
+        case "Zhial":
+          return `HEHE Zhial`;
+        case "Lepparrin's Lowertooth":
+          return `A sharp pointy little thing`;
+        case "Kurkkuin Rind":
+          return `Don't slip on this!`;
+        case "Eiliin Tears":
+          return `What are they?`;
+      }
     }
   }
 };
@@ -90,6 +107,12 @@ export default {
   h1,
   h2 {
     margin: 10px 20px;
+  }
+  h2 {
+    color: $backgroundColor;
+  }
+  p {
+    color: $linkColor;
   }
 }
 </style>
