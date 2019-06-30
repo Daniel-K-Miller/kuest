@@ -7,7 +7,10 @@
       <div id="text-container">
         <h1>{{ selection }}</h1>
         <h2>{{ description }}</h2>
-        <p>{{ paragraph }}</p>
+        <h3>Young</h3>
+        <p>{{ youngParagraph }}</p>
+        <h3>Habitat</h3>
+        <p>{{ habitatParagraph }}</p>
       </div>
       <img src="@/assets/zoomOut.svg" class="info" @click="toggleZoom()" draggable="false" />
     </div>
@@ -30,14 +33,48 @@ export default {
         ? this.defaultAttributes.species[this.selection].description
         : this.defaultAttributes.weapon[this.selection].description;
     },
-    paragraph() {
+    youngParagraph() {
       switch (this.selection) {
         case "Gruvat":
-          return `Mr Gruvat reporting in`;
+          return `Born in isolation, the abandoned Gruvat youngling trusts only themselves. Every sound, sight, 
+                  and scent is a potential risk. Intuition is the only friend a youngling possesses and the only
+                  one it truly needs to bear. There are no brothers, sisters, or family. Gruvat breed once - to an
+                  offspring of one. `;
         case "Tiekkot":
-          return `hello Mr. Tiekkot`;
+          return `Wrapped tightly in a muddish coloured film, the Tiekkot young sprouts by piercing its way out with 
+                  a tusks located on the back of its head. Pyramid shaped wings are weak and frail and will not mature
+                  until adulthood. Tiekkot are awakened into unity believing no individual is special, and no one is
+                  different from one another.`;
         case "Zhial":
-          return `HEHE Zhial`;
+          return `Said to 'have been created by themselves' the Zhial whimper when the day of birth greets them, masking
+                  vibrations of sorrow through the skies. Witnesses of before their own creation they carry with them the
+                  pain of the unknown. Unlike the Gruvat and the Tiekkot, the Zhial are unpredictable. No one encounter 
+                  generates the same result.`;
+        case "Lepparrin's Lowertooth":
+          return `A sharp pointy little thing`;
+        case "Kurkkuin Rind":
+          return `Don't slip on this!`;
+        case "Eiliin Tears":
+          return `What are they?`;
+      }
+    },
+    habitatParagraph() {
+      switch (this.selection) {
+        case "Gruvat":
+          return `Matured in a valley of natural rocks the Gruvat's battlefield has a hidden horizon and because of this  
+                  is scarce of food. Only those that lose themselves and wander within this labyrinth are able to name 
+                  themselves prey. Darkness is cast upon this biome and becomes the Gruvat's dependency, as without it
+                  their senses are dramatically impacted losing central vision, met with dampening of hearing, and complete 
+                  loss of smell. The Gruvat's biggest strength is also their grandest weakness.`;
+        case "Tiekkot":
+          return `Cold is a familiar acquaintance to the Tiekkot. Born upon the open fields shielded by a snow like substance
+                  this is what the Tiekkot calls home. A transparent ground allows the Tiekkot to find their food below. 
+                  Fighting the much larger 'Bluffa' to feast, this feeding is a rarity and may cost the Tiekkot gravely. 
+                  Within erected hollowed out dens the Tiekkot hearth.`;
+        case "Zhial":
+          return `Retracted into themselves, the home of a Zhial is its shell. Camouflaged among a rich multitude of organic  
+                  matter it is difficult to distinguish if a Zhial is there or not. If taken too long to decide that could mean 
+                  the end is close.`;
         case "Lepparrin's Lowertooth":
           return `A sharp pointy little thing`;
         case "Kurkkuin Rind":
@@ -105,7 +142,8 @@ export default {
   }
   p,
   h1,
-  h2 {
+  h2,
+  h3 {
     margin: 10px 20px;
   }
   h2 {
