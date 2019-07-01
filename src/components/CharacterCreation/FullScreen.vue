@@ -98,9 +98,9 @@ export default {
                   to catch a painful end. Coated in a hard layer of exoskeleton gives the Tiekkot their high resistence and protection. Although 
                   strong when above the Tiekkot struggle to compete stationary or using their undeveloped stumps.`;
         case "Zhial":
-          return `Retracted into themselves, the home of a Zhial is its shell. Camouflaged among a rich multitude of organic  
-                  matter it is difficult to distinguish if a Zhial is there or not. If taken too long to decide that could mean 
-                  the end is close.`;
+          return `Extending their vine tendrils the Zhial move slowly but are always ever encompassing among those who challenge them. Utilising these 
+                  tendrils allow the Zhial to not only bind, but siphon from their enemies. The Zhial are truly the thieves of the battlefield bearing 
+                  also a deadly gaze from their voidling eye. Play nice or not at all.`;
         case "Lepparrin's Lowertooth":
           return `A sharp pointy little thing`;
         case "Kurkkuin Rind":
