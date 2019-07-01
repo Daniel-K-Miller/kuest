@@ -11,6 +11,8 @@
         <p>{{ youngParagraph }}</p>
         <h3>Habitat</h3>
         <p>{{ habitatParagraph }}</p>
+        <h3>Fighting Style</h3>
+        <p>{{ fightingStyleParagraph }}</p>
       </div>
       <img src="@/assets/zoomOut.svg" class="info" @click="toggleZoom()" draggable="false" />
     </div>
@@ -71,6 +73,30 @@ export default {
                   this is what the Tiekkot calls home. A transparent ground allows the Tiekkot to find their food below. 
                   Fighting the much larger 'Bluffa' to feast, this feeding is a rarity and may cost the Tiekkot gravely. 
                   Within erected hollowed out dens the Tiekkot hearth.`;
+        case "Zhial":
+          return `Retracted into themselves, the home of a Zhial is its shell. Camouflaged among a rich multitude of organic  
+                  matter it is difficult to distinguish if a Zhial is there or not. If taken too long to decide that could mean 
+                  the end is close.`;
+        case "Lepparrin's Lowertooth":
+          return `A sharp pointy little thing`;
+        case "Kurkkuin Rind":
+          return `Don't slip on this!`;
+        case "Eiliin Tears":
+          return `What are they?`;
+      }
+    },
+    fightingStyleParagraph() {
+      switch (this.selection) {
+        case "Gruvat":
+          return `At the end of their arms the Gruvat have split shards that when met with the right conditions are able to pierce 
+                  through the natural rocks. When in an unfavourable condition the shards appear to have very little effect. To leave 
+                  a trace would be foolish, the Gruvat do not stand upon legs but instead emit the only magically prowess they have to 
+                  lift themselves above the ground. Lined among their flesh is a crimson red liquid indicating their fury, as it builds 
+                  the more troublesome they will become.`;
+        case "Tiekkot":
+          return `The biggest threat when facing the Tiekkot are their extended tusks. When flying downwards can seriously harm those waiting 
+                  to catch a painful end. Coated in a hard layer of exoskeleton gives the Tiekkot their high resistence and protection. Although 
+                  strong when above the Tiekkot struggle to compete stationary or using their undeveloped stumps.`;
         case "Zhial":
           return `Retracted into themselves, the home of a Zhial is its shell. Camouflaged among a rich multitude of organic  
                   matter it is difficult to distinguish if a Zhial is there or not. If taken too long to decide that could mean 
