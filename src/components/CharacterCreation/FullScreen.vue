@@ -7,11 +7,11 @@
       <div id="text-container">
         <h1>{{ selection }}</h1>
         <h2>{{ description }}</h2>
-        <h3>Young</h3>
+        <h3>{{ header1 }}</h3>
         <p>{{ youngParagraph }}</p>
-        <h3>Habitat</h3>
+        <h3>{{ header2 }}</h3>
         <p>{{ habitatParagraph }}</p>
-        <h3>Fighting Style</h3>
+        <h3>{{ header3 }}</h3>
         <p>{{ fightingStyleParagraph }}</p>
       </div>
       <img src="@/assets/zoomOut.svg" class="info" @click="toggleZoom()" draggable="false" />
@@ -34,6 +34,27 @@ export default {
         this.selection === "Zhial"
         ? this.defaultAttributes.species[this.selection].description
         : this.defaultAttributes.weapon[this.selection].description;
+    },
+    header1() {
+      return this.selection === "Gruvat" ||
+        this.selection === "Tiekkot" ||
+        this.selection === "Zhial"
+        ? `Young`
+        : `Origin`;
+    },
+    header2() {
+      return this.selection === "Gruvat" ||
+        this.selection === "Tiekkot" ||
+        this.selection === "Zhial"
+        ? `Habitat`
+        : `Benefits`;
+    },
+    header3() {
+      return this.selection === "Gruvat" ||
+        this.selection === "Tiekkot" ||
+        this.selection === "Zhial"
+        ? `Fighting Style`
+        : `Cons`;
     },
     youngParagraph() {
       switch (this.selection) {
