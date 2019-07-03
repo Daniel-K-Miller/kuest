@@ -37,7 +37,7 @@ export default {
         "test pot"
       ],
       decrementingNum: 500,
-      interval: undefined,
+
       count: 10
     };
   },
@@ -45,16 +45,23 @@ export default {
   /* ; */
   methods: {
     roll(callback, factor, times) {
+      let interval = 20;
       let internalCallback = (function(tick, counter) {
         return function() {
           if (--tick >= 0) {
+            if (interval > 300) {
+              interval -= 300;
+            }
             setTimeout(internalCallback, counter);
+            if (counter < 200) {
+              counter += 10;
+            }
             callback();
           }
         };
-      })(times, 1000);
+      })(25, interval);
 
-      setTimeout(internalCallback, factor);
+      setTimeout(internalCallback);
     }
   },
   computed: {},
