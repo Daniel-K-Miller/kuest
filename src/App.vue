@@ -15,16 +15,20 @@
       :defaultAttributes="defaultAttributes"
       :shortAtr="shortAtr"
     />
+    <!-- Post characert-creation -->
+    <GameScreen v-if="initiated === true && player.level === 1" :playerData="player" />
   </div>
 </template>
 
 <script>
 import LandingContent from "@/components/LandingContent.vue";
 import CharacterCreation from "@/components/CharacterCreation.vue";
+import GameScreen from "@/components/GameScreen.vue";
 export default {
   components: {
     LandingContent,
-    CharacterCreation
+    CharacterCreation,
+    GameScreen
   },
   data() {
     return {
