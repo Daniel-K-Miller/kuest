@@ -46,8 +46,8 @@ export default {
   /* ; */
   methods: {
     roll(callback) {
-      let internalCallback = (function(tick, counter) {
-        return function() {
+      let internalCallback = ((tick, counter) => {
+        return () => {
           if (tick-- >= 0) {
             if (this.interval > 300) {
               this.interval += 300;
@@ -59,6 +59,9 @@ export default {
             callback();
             if (tick < 0) {
               document.getElementById("foe").style.color = "goldenrod";
+              setTimeout(() => {
+                this.rolled = false;
+              }, 2000);
             } else {
               document.getElementById("foe").style.color = "white";
             }
