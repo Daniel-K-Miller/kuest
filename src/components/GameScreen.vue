@@ -6,9 +6,10 @@
         id="roll-btn"
         @click="roll(function() { rollString = opponents[
             Math.floor(Math.random() * opponents.length)
-          ]; }, 10, 10)"
+          ]; })"
+        v-if="!rolled"
       >Roll for first opponent</button>
-      <h2>{{ rollString }}</h2>
+      <h2 id="foe">{{ rollString }}</h2>
     </div>
   </div>
 </template>
@@ -36,32 +37,36 @@ export default {
         "not not",
         "test pot"
       ],
-      decrementingNum: 500,
-
-      count: 10
+      rolled: false,
+      interval: 10,
+      tick: 20
     };
   },
 
   /* ; */
   methods: {
-    roll(callback, factor, times) {
-      let interval = 20;
+    roll(callback) {
       let internalCallback = (function(tick, counter) {
         return function() {
-          if (--tick >= 0) {
-            if (interval > 300) {
-              interval -= 300;
+          if (tick-- >= 0) {
+            if (this.interval > 300) {
+              this.interval += 300;
             }
             setTimeout(internalCallback, counter);
             if (counter < 200) {
               counter += 10;
             }
             callback();
+            if (tick < 0) {
+              document.getElementById("foe").style.color = "goldenrod";
+            } else {
+              document.getElementById("foe").style.color = "white";
+            }
           }
         };
-      })(25, interval);
-
+      })(this.tick, this.interval);
       setTimeout(internalCallback);
+      this.rolled = true;
     }
   },
   computed: {},
@@ -86,6 +91,7 @@ export default {
   margin: 0 auto;
   h3 {
     font-size: 1.2em;
+    padding: 0.5em;
     width: $label-image-width;
   }
   h2 {
