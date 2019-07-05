@@ -9,7 +9,7 @@
           ]; })"
         v-if="!rolled"
       >Roll for first opponent</button>
-      <h2 id="foe">{{ rollString }}</h2>
+      <h2 id="foe" v-if="rolled && tick > 0 && rollString">{{ rollString }}</h2>
     </div>
   </div>
 </template>
@@ -61,7 +61,7 @@ export default {
               document.getElementById("foe").style.color = "goldenrod";
               setTimeout(() => {
                 this.rolled = false;
-              }, 2000);
+              }, 1500);
             } else {
               document.getElementById("foe").style.color = "white";
             }
