@@ -1,6 +1,6 @@
 <template>
   <div class="sub-container">
-    <transition name="fade" mode="out-in">
+    <transition :name="!this.select ? `fade` : `shift`" mode="out-in">
       <button type="button" id="roll-btn" @click="roll" v-if="!rolled">Roll for first opponent</button>
       <h2 id="foe" v-if="rolled">{{ rollString }}</h2>
     </transition>
@@ -30,7 +30,8 @@ export default {
       rolled: false,
       interval: 10,
       tick: 25,
-      slowdown: 100
+      slowdown: 100,
+      selected: false
     };
   },
 
@@ -49,7 +50,12 @@ export default {
             this.random();
             if (tick < 0) {
               document.getElementById("foe").style.color = "goldenrod";
-              setTimeout(() => {}, 1750);
+              setTimeout(() => {
+                document.getElementById("foe").style.transform =
+                  "translate(40vw, 0)";
+                document.getElementById("foe").style.transition = "all .5s";
+              }, 1750);
+              this.selected = true;
               this.$emit("updateOpponent", this.rollString);
             }
           }

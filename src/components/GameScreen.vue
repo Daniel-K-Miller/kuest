@@ -1,6 +1,6 @@
 <template>
   <div class="main-container" @submit.prevent="handleSubmit">
-    <Roll :opponent="opponent" @updateOpponent="updateOpponent($event)" />
+    <Roll :opponent="opponent" @updateOpponent="opponent = $event" />
   </div>
 </template>
 
@@ -18,11 +18,7 @@ export default {
   },
 
   /* ; */
-  methods: {
-    updateOpponent(picked) {
-      this.opponent = picked;
-    }
-  },
+  methods: {},
   computed: {},
   watch: {}
 };
