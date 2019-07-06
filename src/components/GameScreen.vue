@@ -1,15 +1,18 @@
 <template>
   <div class="main-container" @submit.prevent="handleSubmit">
     <div class="sub-container">
-      <button
-        type="button"
-        id="roll-btn"
-        @click="roll(function() { rollString = opponents[
+      <transition name="fade" mode="out-in">
+        <button
+          type="button"
+          id="roll-btn"
+          @click="roll(function() { rollString = opponents[
             Math.floor(Math.random() * opponents.length)
           ]; })"
-        v-if="!rolled"
-      >Roll for first opponent</button>
-      <h2 id="foe" v-if="rolled && tick > 0 && rollString">{{ rollString }}</h2>
+          v-if="!rolled"
+        >Roll for first opponent</button>
+
+        <h2 id="foe" v-if="rolled && tick > 0 && rollString">{{ rollString }}</h2>
+      </transition>
     </div>
   </div>
 </template>
@@ -59,9 +62,8 @@ export default {
             callback();
             if (tick < 0) {
               document.getElementById("foe").style.color = "goldenrod";
-              setTimeout(() => {
-                this.rolled = false;
-              }, 1500);
+
+              this.rolled = false;
             } else {
               document.getElementById("foe").style.color = "white";
             }
@@ -80,6 +82,15 @@ export default {
 <style scope lang="scss">
 @import "../SCSS/variables";
 
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s;
+}
+.fade-enter,
+.fade-leave-to,
+.fade-leave-active {
+  opacity: 0;
+}
 // Component container
 > body {
   width: 100vw;
