@@ -1,77 +1,26 @@
 <template>
   <div class="main-container" @submit.prevent="handleSubmit">
-    <div class="sub-container">
-      <transition name="fade" mode="out-in">
-        <button
-          type="button"
-          id="roll-btn"
-          @click="roll(function() { rollString = opponents[
-            Math.floor(Math.random() * opponents.length)
-          ]; })"
-          v-if="!rolled"
-        >Roll for first opponent</button>
-
-        <h2 id="foe" v-if="rolled && tick > 0 && rollString">{{ rollString }}</h2>
-      </transition>
-    </div>
+    <Roll :opponent="opponent" @updateOpponent="updateOpponent($event)" />
   </div>
 </template>
 
 <script>
-import Name from "@/components/CharacterCreation/Name.vue";
-
+import Roll from "@/components/GameScreen/Roll";
 export default {
-  components: {},
+  components: { Roll },
   props: {
     playerData: Object
   },
   data() {
     return {
-      rollString: undefined,
-      opponents: [
-        "Starter Bot",
-        "Hard mode Bot",
-        "Medium mode Bot",
-        "bee bot",
-        "tee bot",
-        "tee pot",
-        "nee mot",
-        "see phot",
-        "not not",
-        "test pot"
-      ],
-      rolled: false,
-      interval: 10,
-      tick: 20
+      opponent: undefined
     };
   },
 
   /* ; */
   methods: {
-    roll(callback) {
-      let internalCallback = ((tick, counter) => {
-        return () => {
-          if (tick-- >= 0) {
-            if (this.interval > 300) {
-              this.interval += 300;
-            }
-            setTimeout(internalCallback, counter);
-            if (counter < 200) {
-              counter += 10;
-            }
-            callback();
-            if (tick < 0) {
-              document.getElementById("foe").style.color = "goldenrod";
-
-              this.rolled = false;
-            } else {
-              document.getElementById("foe").style.color = "white";
-            }
-          }
-        };
-      })(this.tick, this.interval);
-      setTimeout(internalCallback);
-      this.rolled = true;
+    updateOpponent(picked) {
+      this.opponent = picked;
     }
   },
   computed: {},
@@ -79,7 +28,7 @@ export default {
 };
 </script>
 
-<style scope lang="scss">
+<style lang="scss">
 @import "../SCSS/variables";
 
 .fade-enter-active,
@@ -91,6 +40,15 @@ export default {
 .fade-leave-active {
   opacity: 0;
 }
+
+.shift-enter-active {
+  transition: all 0.5s;
+}
+
+.shift-enter {
+  transform: translate(40vw, 0);
+}
+
 // Component container
 > body {
   width: 100vw;
@@ -99,17 +57,16 @@ export default {
 
 // sub-component containers
 .sub-container {
+  display: flex;
   background-color: $inactiveLinkColor;
   padding: 20px 0;
-  width: 1000px;
+  height: 10vh;
   margin: 0 auto;
-  h3 {
-    font-size: 1.2em;
-    padding: 0.5em;
-    width: $label-image-width;
-  }
+  justify-content: center;
+  align-content: center;
   h2 {
     color: white;
+    margin: auto;
   }
 }
 
