@@ -89,4 +89,31 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../../SCSS/variables";
+
+h2 {
+  display: flex;
+  color: white;
+  font-size: 1.6em;
+  margin: auto 0;
+}
+#player {
+  color: lighten($mainColor, 20);
+  transform: translate(-40vw, 0);
+}
+#vs {
+  color: white;
+  position: absolute;
+  top: 35%;
+}
+
+#roll-btn {
+  background-color: $inactiveLinkColor;
+  color: $mainColor;
+  font-size: 1.2em;
+  padding: 0.5em;
+  border: none;
+  border-radius: 5px;
+  border: solid 2px $mainColor;
+}
 </style>
