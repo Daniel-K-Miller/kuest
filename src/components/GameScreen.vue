@@ -1,6 +1,6 @@
 <template>
   <div class="main-container" @submit.prevent="handleSubmit">
-    <Roll :opponent="opponent" @updateOpponent="opponent = $event" />
+    <Roll :opponent="opponent" @updateOpponent="opponent = $event" :playerName="playerData.name" />
   </div>
 </template>
 
@@ -52,17 +52,32 @@ export default {
 }
 
 // sub-component containers
+.main-container {
+  margin-top: 10px;
+}
 .sub-container {
   display: flex;
-  background-color: $inactiveLinkColor;
-  padding: 20px 0;
-  height: 10vh;
-  margin: 0 auto;
+  background-color: lighten($backgroundColor, 2);
   justify-content: center;
   align-content: center;
+  position: relative;
+  height: 50px;
+  padding: 20px 0;
+
   h2 {
+    display: flex;
     color: white;
-    margin: auto;
+    font-size: 1.6em;
+    margin: auto 0;
+  }
+  #player {
+    color: lighten($mainColor, 20);
+    transform: translate(-40vw, 0);
+  }
+  #vs {
+    color: white;
+    position: absolute;
+    top: 35%;
   }
 }
 
@@ -74,7 +89,6 @@ export default {
   padding: 0.5em;
   border: none;
   border-radius: 5px;
-  margin: 20px 0;
   border: solid 2px $mainColor;
 }
 </style>

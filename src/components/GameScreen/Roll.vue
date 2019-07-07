@@ -1,8 +1,14 @@
 <template>
   <div class="sub-container">
-    <transition :name="!this.select ? `fade` : `shift`" mode="out-in">
+    <transition name="fade" mode="out-in">
       <button type="button" id="roll-btn" @click="roll" v-if="!rolled">Roll for first opponent</button>
       <h2 id="foe" v-if="rolled">{{ rollString }}</h2>
+    </transition>
+    <transition name="fade">
+      <h2 id="player" v-if="selected">{{ playerName }}</h2>
+    </transition>
+    <transition name="fade">
+      <h2 id="vs" v-if="selected">VS</h2>
     </transition>
   </div>
 </template>
@@ -10,7 +16,8 @@
 <script>
 export default {
   props: {
-    opponent: String
+    opponent: String,
+    playerName: String
   },
   data() {
     return {
@@ -54,8 +61,11 @@ export default {
                 document.getElementById("foe").style.transform =
                   "translate(40vw, 0)";
                 document.getElementById("foe").style.transition = "all .5s";
-              }, 1750);
-              this.selected = true;
+                setTimeout(() => {
+                  this.selected = true;
+                }, 500);
+              }, 2000);
+
               this.$emit("updateOpponent", this.rollString);
             }
           }
@@ -68,6 +78,11 @@ export default {
       this.rollString = this.opponents[
         Math.floor(Math.random() * this.opponents.length)
       ];
+    }
+  },
+  watch: {
+    selected() {
+      console.log("hello!");
     }
   }
 };
