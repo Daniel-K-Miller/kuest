@@ -9,17 +9,36 @@
       <router-link to="/about">about</router-link>&nbsp;section
     </p>
     <div>
-      <img src="@/assets/models/gruvat.png" draggable="false">
-      <img src="@/assets/models/tiekkot.png" draggable="false">
-      <img src="@/assets/models/zhial.png" draggable="false">
+      <img src="@/assets/models/gruvat.png" draggable="false" />
+      <img src="@/assets/models/tiekkot.png" draggable="false" />
+      <img src="@/assets/models/zhial.png" draggable="false" />
     </div>
     <button @click="change" id="start-btn">Play</button>
+    <Tile
+      heading="Test Heading!"
+      body="This is some example body text. This is some example body text. This is some example body text. This is some example body text."
+      imageLink="https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2019/07/Man-Silhouette.jpg"
+      :color="enums.tileColors.GREEN"
+    />
   </div>
 </template>
 
 <script>
+import Tile from "./HomeScreen/Tile";
+import * as enums from "../utils/enums.js";
+
 export default {
+  components: {
+    Tile
+  },
   name: "HomeContent",
+  data: function() {
+    return {
+      enums: {
+        tileColors: enums.tileColors
+      }
+    };
+  },
   methods: {
     change() {
       this.$emit("changeInitiated");

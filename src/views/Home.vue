@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <HomeContent @changeInitiated="changeInitiated"/>
+    <HomeContent @changeInitiated="changeInitiated" />
   </div>
 </template>
 
