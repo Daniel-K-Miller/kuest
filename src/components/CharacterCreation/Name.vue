@@ -1,7 +1,7 @@
 <template>
   <div id="name-container" class="divide">
     <h2>Character Name:</h2>
-    <input type="text" name="playerName" maxlength="12" v-model="playerData.name" required>
+    <input type="text" name="playerName" maxlength="12" v-model="playerData.name" required />
     <button id="random-btn" type="button" @click="handleRandom"></button>
   </div>
 </template>
@@ -18,7 +18,7 @@ export default {
 <style scope lang="scss">
 @import "../../SCSS/variables";
 #name-container {
-  background-color: lighten($backgroundColor, 4);
+  background-color: lighten($darkColor, 4);
   display: flex;
   justify-content: center;
   border-top-left-radius: 10px;
@@ -38,6 +38,6 @@ export default {
   border: none;
   width: 30px;
   height: 30px;
-  background-color: $linkColor;
+  background-color: $lightColor;
 }
 </style>

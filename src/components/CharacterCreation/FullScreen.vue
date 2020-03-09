@@ -138,7 +138,7 @@ export default {
 @import "../../SCSS/variables";
 #fullScreen-container {
   position: relative;
-  background: $backgroundColor;
+  background: $darkColor;
   position: fixed;
   margin: auto auto;
   z-index: 1;
@@ -180,7 +180,7 @@ export default {
   margin: auto 0;
 }
 #text-container {
-  background-color: $inactiveLinkColor;
+  background-color: $lightColor;
   color: white;
   text-align: justify;
   width: 50vw;
@@ -194,10 +194,10 @@ export default {
     margin: 10px 20px;
   }
   h2 {
-    color: $backgroundColor;
+    color: $accentColor;
   }
   p {
-    color: $linkColor;
+    color: $lightColor;
   }
 }
 </style>

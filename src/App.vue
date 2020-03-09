@@ -135,26 +135,27 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: $inactiveLinkColor;
+  color: $lightColor;
 }
 * {
   margin: 0;
   padding: 0;
 }
 body {
-  background-color: $backgroundColor;
+  background-color: $darkColor;
 }
 #nav {
   padding: 30px;
   a {
     font-weight: bold;
-    color: $inactiveLinkColor;
+    color: $accentColor;
     &.router-link-exact-active {
-      color: $linkColor;
+      color: $accentDarkColor;
     }
   }
 }
 #kuest-title {
+  margin-top: 40px;
   width: 300px;
 }
 </style>

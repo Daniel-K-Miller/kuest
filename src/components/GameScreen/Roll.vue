@@ -98,7 +98,7 @@ h2 {
   margin: auto 0;
 }
 #player {
-  color: lighten($mainColor, 20);
+  color: lighten($primaryColor, 20);
   transform: translate(-40vw, 0);
 }
 #vs {
@@ -108,12 +108,12 @@ h2 {
 }
 
 #roll-btn {
-  background-color: $inactiveLinkColor;
-  color: $mainColor;
+  background-color: $secondaryColor;
+  color: $lightColor;
   font-size: 1.2em;
   padding: 0.5em;
   border: none;
   border-radius: 5px;
-  border: solid 2px $mainColor;
+  border: solid 2px $secondaryColor;
 }
 </style>

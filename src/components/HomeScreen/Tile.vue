@@ -1,5 +1,5 @@
 <template>
-  <div class="tile-container" v-bind:class="pickBackgroundColor">
+  <div class="tile-container" v-bind:class="[pickBackgroundColor, selectFlexDirection]">
     <div class="text-container">
       <h1 class="heading">{{ heading }}</h1>
       <p class="text-body">{{ body }}</p>
@@ -18,51 +18,65 @@ export default {
     heading: String,
     body: String,
     imageLink: String,
-    color: Number
-  },
-  methods: {
-    
+    index: Number
   },
   computed: {
     pickBackgroundColor() {
-      switch (this.$props.color) {
-        case tileColors.RED:
-          return "red-bg";
-        case tileColors.BLUE:
-          return "blue-bg";
-        case tileColors.GREEN:
-          return "green-bg";
+      switch (this.$props.index) {
+        case tileColors.DARK:
+          return "dark-bg";
+        case tileColors.DARKER:
+          return "darker-bg";
+        case tileColors.CYAN:
+          return "cyan-bg";
+        case tileColors.DARKEST:
+          return "darkest-bg";
         default:
           return "";
       }
+    },
+    selectFlexDirection() {
+      if (this.$props.index % 2 > 0) {
+        return "tile-row";
+      } else {
+        return "tile-row-reversed";
+      }
     }
-  },
-  created() {
-    
   }
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "../../SCSS/_variables.scss";
+
+.tile-row {
+  flex-direction: row;
+}
+
+.tile-row-reversed {
+  flex-direction: row-reverse;
+}
+
 .tile-container {
   position: relative;
   display: flex;
-  flex-direction: row;
-  width: 100vw;
+  width: 100%;
   height: 100%;
   margin: 0 auto;
-  justify-content: center;
+  justify-content: space-around;
+  padding: 50px 0 100px 0;
+  z-index: 1;
 }
 .tile-container:before {
   content: "";
   display: block;
   height: 90px;
-  width: 100vw;
+  width: 100%;
   position: absolute;
   right: 0;
   left: 0;
-  top: -30px;
-  transform: skewY(-1.5deg);
+  top: -40px;
+  transform: skewY(-2.5deg);
   transform-origin: 100;
   z-index: -1;
 }
@@ -70,12 +84,12 @@ export default {
   content: "";
   display: block;
   height: 90px;
-  width: 100vw;
+  width: 100%;
   position: absolute;
   right: 0;
   left: 0;
   bottom: -30px;
-  transform: skewY(0.5deg);
+  transform: skewY(1.5deg);
   transform-origin: 100;
   z-index: -1;
 }
@@ -83,7 +97,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 0 30px;
+  margin-left: 0;
 }
 .heading {
   text-align: start;
@@ -98,33 +112,32 @@ img {
   border-radius: 12px;
 }
 
-.red-bg {
-  background-color: lightcoral;
-}
-.red-bg:before {
-  background-color: lightcoral;
-}
-.red-bg:after {
-  background-color: lightcoral;
+.dark-bg,
+.dark-bg:before,
+.dark-bg:after {
+  background-color: lighten($darkColor, 5);
 }
 
-.blue-bg {
-  background-color: lightblue;
-}
-.blue-bg:before {
-  background-color: lightblue;
-}
-.blue-bg:after {
-  background-color: lightblue;
+.darker-bg,
+.darker-bg:before,
+.darker-bg:after {
+  background-color: lighten($darkColor, 10);
 }
 
-.green-bg {
+.cyan-bg,
+.cyan-bg:before,
+.cyan-bg:after {
   background-color: lightseagreen;
+  z-index: 10;
 }
-.green-bg:before {
-  background-color: lightseagreen;
+.cyan-bg {
+  height: auto;
+  z-index: 20;
 }
-.green-bg:after {
-  background-color: lightseagreen;
+
+.darkest-bg,
+.darkest-bg:before,
+.darkest-bg:after {
+  background-color: lighten($darkColor, 15);
 }
 </style>

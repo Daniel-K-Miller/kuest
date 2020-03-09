@@ -27,7 +27,7 @@ export default {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  background-color: $mainColor;
+  background-color: $primaryColor;
   width: max-content;
   margin: 0 auto;
   h2 {

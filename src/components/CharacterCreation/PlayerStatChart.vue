@@ -1,6 +1,6 @@
 <template>
   <div id="chart-container" class="divide">
-    <svg :width="width" :height="175"></svg>
+    <svg :width="width" :height="175" />
   </div>
 </template>
 
@@ -151,11 +151,11 @@ export default {
 @import "../../SCSS/variables";
 
 .txt-label {
-  fill: $linkColor;
+  fill: $accentColor;
 }
 
 #chart-container {
-  background-color: lighten($backgroundColor, 10);
+  background-color: lighten($darkColor, 10);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }

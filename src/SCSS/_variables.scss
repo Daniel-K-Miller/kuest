@@ -1,12 +1,15 @@
 // main font colour
-$mainColor: #4c76ba;
+$primaryColor: #4c76ba;
+$secondaryColor: #4d658b;
+$tertiaryColor: #315896;
 
-//background color
-$backgroundColor: #0e1726;
+// alternative colors
+$darkColor: #06090f;
+$lightColor: #d1e2ff;
 
-//link color
-$inactiveLinkColor: #2c3e50;
-$linkColor: #7c8ca8;
+// accent colors
+$accentColor: rgb(37, 180, 173);
+$accentDarkColor: rgb(24, 122, 118);
 
 // atr colors
 $brute: #772828;
@@ -15,8 +18,6 @@ $life: #287753;
 $dmg: #772873;
 $crit: #287577;
 $acc: #777528;
-
-// DIMENSION PROPERTIES + VALUES
 
 // labels
 $label-image-width: 175px;

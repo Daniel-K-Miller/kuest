@@ -190,7 +190,7 @@ export default {
 
 // sub-component containers
 .divide {
-  background-color: $inactiveLinkColor;
+  background-color: $tertiaryColor;
   padding: 20px 0;
   width: 1000px;
   margin: 0 auto;
@@ -205,8 +205,8 @@ export default {
 
 // button at bottom of page to create character
 #create-character-button {
-  background-color: $inactiveLinkColor;
-  color: $mainColor;
+  background-color: $tertiaryColor;
+  color: $lightColor;
   font-size: 1.2em;
   padding: 0.5em;
   border: none;

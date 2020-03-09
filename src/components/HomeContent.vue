@@ -15,10 +15,12 @@
     </div>
     <button @click="change" id="start-btn">Play</button>
     <Tile
-      heading="Test Heading!"
-      body="This is some example body text. This is some example body text. This is some example body text. This is some example body text."
+      v-for="(tile, index) in config.tiles"
+      :key="tile.heading"
+      :heading="tile.heading"
+      :body="tile.body"
       imageLink="https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2019/07/Man-Silhouette.jpg"
-      :color="enums.tileColors.GREEN"
+      :index="index + 1"
     />
   </div>
 </template>
@@ -26,6 +28,7 @@
 <script>
 import Tile from "./HomeScreen/Tile";
 import * as enums from "../utils/enums.js";
+import config from "../../docs/config.json";
 
 export default {
   components: {
@@ -36,14 +39,16 @@ export default {
     return {
       enums: {
         tileColors: enums.tileColors
-      }
+      },
+      config
     };
   },
   methods: {
     change() {
       this.$emit("changeInitiated");
     }
-  }
+  },
+  created() {}
 };
 </script>
 
@@ -53,7 +58,7 @@ export default {
 
 h3 {
   margin: 40px 0 0;
-  color: $mainColor;
+  color: $lightColor;
   background-color: white;
 }
 ul {
@@ -65,18 +70,18 @@ li {
   margin: 0 10px;
 }
 a {
-  color: $linkColor;
+  color: $accentColor;
 }
 #referral {
   margin-top: 20px;
-  color: $inactiveLinkColor;
+  color: $accentColor;
 }
 #slogan-container {
-  color: $linkColor;
+  color: $secondaryColor;
 }
 #start-btn {
-  background-color: $inactiveLinkColor;
-  color: $mainColor;
+  background-color: $darkColor;
+  color: $tertiaryColor;
   font-size: 1.5em;
   padding: 0.5em 1em;
   border: none;
@@ -85,7 +90,7 @@ a {
 }
 img {
   width: 150px;
-  background-color: $inactiveLinkColor;
+  background-color: $darkColor;
   padding: 1em;
   margin: 2em;
 }

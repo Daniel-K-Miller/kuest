@@ -59,7 +59,7 @@ export default {
 }
 .sub-container {
   display: flex;
-  background-color: lighten($backgroundColor, 2);
+  background-color: lighten($darkColor, 2);
   justify-content: center;
   align-content: center;
   position: relative;

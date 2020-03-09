@@ -71,16 +71,16 @@ export default {
 @import "../../SCSS/variables";
 
 #species-container {
-  background-color: lighten($backgroundColor, 6);
+  background-color: lighten($darkColor, 6);
   .info {
     top: $species-image-height - $info - 5px;
   }
 }
 
 #weapon-container {
-  background-color: lighten($backgroundColor, 7);
+  background-color: lighten($darkColor, 7);
   img {
-    background-color: $inactiveLinkColor;
+    background-color: $tertiaryColor;
   }
   .info {
     top: $weapon-image-height - $info - 5px;
@@ -88,7 +88,7 @@ export default {
 }
 
 label {
-  background-color: $backgroundColor;
+  background-color: $lightColor;
   margin: 10px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
@@ -113,7 +113,7 @@ label {
     cursor: pointer;
   }
   [type="radio"]:checked + img {
-    box-shadow: 0 0 20px $mainColor;
+    box-shadow: 0 0 20px $primaryColor;
     border-radius: 10px;
   }
   .stats {

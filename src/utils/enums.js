@@ -1,6 +1,8 @@
 export const tileColors = {
   NONE: 0,
-  RED: 1,
-  BLUE: 2,
-  GREEN: 3
+  DARK: 1,
+  DARKER: 2,
+  CYAN: 3,
+  DARKEST: 4,
+  DARKESTER: 5
 };
