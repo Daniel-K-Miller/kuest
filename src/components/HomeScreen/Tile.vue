@@ -5,7 +5,7 @@
       <p class="text-body">{{ body }}</p>
     </div>
     <div class="img-container">
-      <img v-bind:src="imageLink" />
+      <img v-bind:src="imageLink" draggable="false" />
     </div>
   </div>
 </template>
@@ -60,6 +60,7 @@ export default {
 }
 
 .tile-container {
+  align-items: center;
   position: relative;
   display: flex;
   width: 100%;
@@ -115,7 +116,7 @@ export default {
 }
 img {
   width: 400px;
-  height: 150px;
+  height: auto;
   border-radius: 12px;
 }
 
@@ -140,7 +141,7 @@ img {
 .cyan-bg {
   height: auto;
   z-index: 20;
-  padding: 10px 0;
+  padding: 30px 0;
 }
 
 .darkest-bg,
@@ -149,9 +150,69 @@ img {
   background-color: lighten($darkColor, 15);
 }
 
+.darkest-bg {
+  padding: 125px 0;
+}
+
 .darkester-bg,
 .darkester-bg:before,
 .darkest-bg:after {
   background-color: lighten($darkColor, 20);
+  z-index: 0;
+}
+
+@media only screen and (max-width: 900px) {
+  .tile-container {
+    flex-direction: column;
+    .text-container {
+      margin-bottom: 30px;
+      h1 {
+        margin-bottom: 5px;
+      }
+    }
+    .text-container,
+    h1,
+    p {
+      width: 55vw;
+      height: auto;
+      padding: 0;
+    }
+    img {
+      width: 60vw;
+    }
+  }
+  .darkester-bg:before {
+    z-index: -1;
+  }
+}
+
+@media only screen and (max-width: 560px) {
+  .tile-container {
+    img {
+      width: 85vw;
+    }
+    .text-container,
+    h1,
+    p {
+      width: 75vw;
+    }
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .tile-container {
+    img {
+      width: 100vw;
+      border-radius: 0;
+    }
+    .text-container,
+    h1,
+    p {
+      width: 85vw;
+    }
+    h1 {
+      font-size: 1.5em;
+    }
+  }
 }
 </style>

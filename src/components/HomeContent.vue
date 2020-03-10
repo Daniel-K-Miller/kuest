@@ -13,7 +13,7 @@
       <img src="@/assets/models/tiekkot.png" draggable="false" />
       <img src="@/assets/models/zhial.png" draggable="false" />
     </div>
-    <button @click="change" id="start-btn">Play</button>
+    <Button @click="change" :text="'Play'" />
     <Tile
       v-for="(tile, index) in config.tiles"
       :key="tile.heading"
@@ -27,12 +27,14 @@
 
 <script>
 import Tile from "./HomeScreen/Tile";
+import Button from "./HomeScreen/Button";
 import * as enums from "../utils/enums.js";
 import config from "../../docs/config.json";
 
 export default {
   components: {
-    Tile
+    Tile,
+    Button
   },
   name: "HomeContent",
   data: function() {
@@ -45,6 +47,7 @@ export default {
   },
   methods: {
     change() {
+      console.log("hellos");
       this.$emit("changeInitiated");
     }
   },
@@ -78,15 +81,6 @@ a {
 }
 #slogan-container {
   color: $secondaryColor;
-}
-#start-btn {
-  background-color: $darkColor;
-  color: $tertiaryColor;
-  font-size: 1.5em;
-  padding: 0.5em 1em;
-  border: none;
-  border-radius: 5px;
-  margin-top: 20px;
 }
 img {
   width: 150px;
