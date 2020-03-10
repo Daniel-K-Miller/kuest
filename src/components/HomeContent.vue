@@ -19,7 +19,7 @@
       :key="tile.heading"
       :heading="tile.heading"
       :body="tile.body"
-      imageLink="https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2019/07/Man-Silhouette.jpg"
+      imageLink="https://designshack.net/wp-content/uploads/placeholder-image.png"
       :index="index + 1"
     />
   </div>

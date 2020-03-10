@@ -31,6 +31,8 @@ export default {
           return "cyan-bg";
         case tileColors.DARKEST:
           return "darkest-bg";
+        case tileColors.DARKESTER:
+          return "darkester-bg";
         default:
           return "";
       }
@@ -63,9 +65,14 @@ export default {
   width: 100%;
   height: 100%;
   margin: 0 auto;
-  justify-content: space-around;
+  justify-content: center;
   padding: 50px 0 100px 0;
   z-index: 1;
+  h1,
+  p {
+    width: 30vw;
+    padding: 0 30px;
+  }
 }
 .tile-container:before {
   content: "";
@@ -127,17 +134,24 @@ img {
 .cyan-bg,
 .cyan-bg:before,
 .cyan-bg:after {
-  background-color: lightseagreen;
-  z-index: 10;
+  background-color: darken($lightColor, 0);
+  color: $darkColor;
 }
 .cyan-bg {
   height: auto;
   z-index: 20;
+  padding: 10px 0;
 }
 
 .darkest-bg,
 .darkest-bg:before,
 .darkest-bg:after {
   background-color: lighten($darkColor, 15);
+}
+
+.darkester-bg,
+.darkester-bg:before,
+.darkest-bg:after {
+  background-color: lighten($darkColor, 20);
 }
 </style>
