@@ -65,9 +65,10 @@ export default {
   display: flex;
   width: 100%;
   height: 100%;
-  margin: 0 auto;
+  padding-top: 80px;
+  margin: 90px auto 0 auto;
   justify-content: center;
-  padding: 50px 0 100px 0;
+  padding: 0px 0 90px 0;
   z-index: 1;
   h1,
   p {

@@ -13,7 +13,7 @@
       <img src="@/assets/models/tiekkot.png" draggable="false" />
       <img src="@/assets/models/zhial.png" draggable="false" />
     </div>
-    <Button @click="change" :text="'Play'" />
+    <Button :click="change" :text="'Play'" />
     <Tile
       v-for="(tile, index) in config.tiles"
       :key="tile.heading"
