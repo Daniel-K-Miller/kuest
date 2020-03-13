@@ -16,6 +16,8 @@
     <Button :click="change" :text="'Play'" />
     <Tile
       v-for="(tile, index) in config.tiles"
+      :firstItem="index === 0 ? true : false"
+      :lastItem="index === config.tiles.length - 1 ? true : false"
       :key="tile.heading"
       :heading="tile.heading"
       :body="tile.body"

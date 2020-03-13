@@ -1,5 +1,8 @@
 <template>
-  <div class="tile-container" v-bind:class="[pickBackgroundColor, selectFlexDirection]">
+  <div
+    class="tile-container"
+    v-bind:class="[pickBackgroundColor, selectFlexDirection, setMarginAndPadding]"
+  >
     <div class="text-container">
       <h1 class="heading">{{ heading }}</h1>
       <p class="text-body">{{ body }}</p>
@@ -11,30 +14,23 @@
 </template>
 
 <script>
-import { tileColors } from "../../utils/enums";
-
 export default {
   props: {
     heading: String,
     body: String,
     imageLink: String,
-    index: Number
+    index: Number,
+    firstItem: Boolean,
+    lastItem: Boolean
   },
   computed: {
     pickBackgroundColor() {
-      switch (this.$props.index) {
-        case tileColors.DARK:
-          return "dark-bg";
-        case tileColors.DARKER:
-          return "darker-bg";
-        case tileColors.CYAN:
-          return "cyan-bg";
-        case tileColors.DARKEST:
-          return "darkest-bg";
-        case tileColors.DARKESTER:
-          return "darkester-bg";
-        default:
-          return "";
+      if (this.$props.index % 3 === 0) {
+        return "primary-color";
+      } else if (this.$props.index % 2 === 0) {
+        return "secondary-color";
+      } else {
+        return "tertiary-color";
       }
     },
     selectFlexDirection() {
@@ -42,6 +38,15 @@ export default {
         return "tile-row";
       } else {
         return "tile-row-reversed";
+      }
+    },
+    setMarginAndPadding() {
+      if (this.$props.firstItem === true) {
+        return "top-margin";
+      } else if (this.$props.lastItem === true) {
+        return "bottom-margin";
+      } else {
+        return "";
       }
     }
   }
@@ -65,8 +70,6 @@ export default {
   display: flex;
   width: 100%;
   height: 100%;
-  padding-top: 80px;
-  margin: 90px auto 0 auto;
   justify-content: center;
   padding: 0px 0 90px 0;
   z-index: 1;
@@ -89,19 +92,7 @@ export default {
   transform-origin: 100;
   z-index: -1;
 }
-.tile-container:after {
-  content: "";
-  display: block;
-  height: 90px;
-  width: 100%;
-  position: absolute;
-  right: 0;
-  left: 0;
-  bottom: -30px;
-  transform: skewY(1.5deg);
-  transform-origin: 100;
-  z-index: -1;
-}
+
 .text-container {
   display: flex;
   flex-direction: column;
@@ -121,45 +112,30 @@ img {
   border-radius: 12px;
 }
 
-.dark-bg,
-.dark-bg:before,
-.dark-bg:after {
-  background-color: lighten($darkColor, 5);
+.primary-color,
+.primary-color::before,
+.primary-color:after {
+  background-color: lighten($color: $darkColor, $amount: 10);
 }
 
-.darker-bg,
-.darker-bg:before,
-.darker-bg:after {
-  background-color: lighten($darkColor, 10);
+.secondary-color,
+.secondary-color::before,
+.secondary-color:after {
+  background-color: lighten($color: $darkColor, $amount: 15);
 }
 
-.cyan-bg,
-.cyan-bg:before,
-.cyan-bg:after {
-  background-color: darken($lightColor, 0);
-  color: $darkColor;
-}
-.cyan-bg {
-  height: auto;
-  z-index: 20;
-  padding: 30px 0;
+.tertiary-color,
+.tertiary-color::before,
+.tertiary-color:after {
+  background-color: lighten($color: $darkColor, $amount: 20);
 }
 
-.darkest-bg,
-.darkest-bg:before,
-.darkest-bg:after {
-  background-color: lighten($darkColor, 15);
+.top-margin {
+  margin-top: 90px;
 }
 
-.darkest-bg {
-  padding: 125px 0;
-}
-
-.darkester-bg,
-.darkester-bg:before,
-.darkest-bg:after {
-  background-color: lighten($darkColor, 20);
-  z-index: 0;
+.bottom-margin {
+  padding-bottom: 50px;
 }
 
 @media only screen and (max-width: 900px) {
