@@ -1,0 +1,37 @@
+{
+  "links": [
+    {
+      "title": "Home",
+      "href": "/home/"
+    },
+    {
+      "title": "About",
+      "href": "/about/"
+    },
+    {
+      "title": "Contact",
+      "href": "/contact/"
+    },
+    {
+      "title": "Privacy",
+      "href": "/Privacy/"
+    }
+  ],
+  "social": [
+    {
+      "title": "Twitter",
+      "image": "twitter.png",
+      "href": "www.twitter.com/Kuest/"
+    },
+    {
+      "title": "Instagram",
+      "image": "instagram.png",
+      "href": "www.instagram.com"
+    },
+    {
+      "title": "Facebook",
+      "image": "facebook.png",
+      "href": "www.facebook.com"
+    }
+  ]
+}

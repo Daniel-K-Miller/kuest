@@ -24,19 +24,22 @@
       imageLink="https://designshack.net/wp-content/uploads/placeholder-image.png"
       :index="index + 1"
     />
+    <Footer />
   </div>
 </template>
 
 <script>
 import Tile from "./HomeScreen/Tile";
 import Button from "./HomeScreen/Button";
+import Footer from "./HomeScreen/Footer";
 import * as enums from "../utils/enums.js";
 import config from "../../docs/config.json";
 
 export default {
   components: {
     Tile,
-    Button
+    Button,
+    Footer
   },
   name: "HomeContent",
   data: function() {
