@@ -1,19 +1,6 @@
 <template>
   <div class="home-container">
-    <span id="slogan-container">
-      <h1>Your journey begins here...</h1>
-      <p>How far can you progress?</p>
-    </span>
-    <p id="referral">
-      For a quick-start guide and more information about Kuest visit the
-      <router-link to="/about">about</router-link>&nbsp;section
-    </p>
-    <div>
-      <img src="@/assets/models/gruvat.png" draggable="false" />
-      <img src="@/assets/models/tiekkot.png" draggable="false" />
-      <img src="@/assets/models/zhial.png" draggable="false" />
-    </div>
-    <Button :click="change" :text="'Play'" />
+    <Highlight />
     <Tile
       v-for="(tile, index) in config.tiles"
       :firstItem="index === 0 ? true : false"
@@ -29,16 +16,16 @@
 </template>
 
 <script>
+import Highlight from "./HomeScreen/Highlight";
 import Tile from "./HomeScreen/Tile";
-import Button from "./HomeScreen/Button";
 import Footer from "./HomeScreen/Footer";
 import * as enums from "../utils/enums.js";
 import config from "../../docs/config.json";
 
 export default {
   components: {
+    Highlight,
     Tile,
-    Button,
     Footer
   },
   name: "HomeContent",

@@ -45,6 +45,10 @@ export default {
 <style lang="scss" scoped>
 @import "../../SCSS/_variables.scss";
 
+footer {
+  width: 100%;
+}
+
 footer .top-level {
   display: flex;
   flex-direction: row;
@@ -92,6 +96,6 @@ footer .bottom-level {
     font-size: 0.75em;
     font-weight: normal;
   }
-  margin: 10px 0;
+  margin: 1vw 0;
 }
 </style>

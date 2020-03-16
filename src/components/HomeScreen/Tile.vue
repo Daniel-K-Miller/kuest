@@ -73,6 +73,7 @@ export default {
   justify-content: center;
   padding: 0px 0 90px 0;
   z-index: 1;
+  padding-bottom: 150px;
   h1,
   p {
     width: 30vw;
@@ -82,13 +83,13 @@ export default {
 .tile-container:before {
   content: "";
   display: block;
-  height: 90px;
+  height: 100%;
   width: 100%;
   position: absolute;
   right: 0;
   left: 0;
-  top: -40px;
-  transform: skewY(-2.5deg);
+  top: -20%;
+  transform: skewY(-1.5deg);
   transform-origin: 100;
   z-index: -1;
 }
@@ -131,14 +132,32 @@ img {
 }
 
 .top-margin {
-  margin-top: 90px;
+  margin-top: 150px;
 }
 
 .bottom-margin {
-  padding-bottom: 50px;
+  margin-bottom: 90px;
+  padding-bottom: 10px;
+}
+
+.bottom-margin::after {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: -20%;
+  transform: skewY(-1.5deg);
+  transform-origin: 100;
+  z-index: -1;
 }
 
 @media only screen and (max-width: 900px) {
+  .top-margin {
+    margin-top: 200px;
+  }
   .tile-container {
     flex-direction: column;
     .text-container {
