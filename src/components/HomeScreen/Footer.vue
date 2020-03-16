@@ -67,6 +67,9 @@ footer .top-level {
       text-align: left;
       a {
         color: $primaryColor;
+        &:hover {
+          color: gray;
+        }
       }
     }
   }
