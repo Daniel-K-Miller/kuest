@@ -1,7 +1,5 @@
 <template>
   <div id="app">
-    <img id="kuest-title" src="@/assets/title/title.svg" draggable="false" />
-
     <!-- Starting Screen -->
     <LandingContent
       v-if="initiated === false"
@@ -143,19 +141,5 @@ export default {
 }
 body {
   background-color: $darkColor;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: $accentColor;
-    &.router-link-exact-active {
-      color: $accentDarkColor;
-    }
-  }
-}
-#kuest-title {
-  margin-top: 40px;
-  width: 300px;
 }
 </style>
