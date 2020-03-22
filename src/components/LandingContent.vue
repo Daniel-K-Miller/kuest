@@ -20,11 +20,14 @@
         <router-link to="/about">Social</router-link>
       </li>
     </ul>
+    <button id="mobile-button">toggle</button>
   </nav>
   <!-- <router-view :initiated="initiated" @changeInitiated="changeInitiated"/> -->
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   props: {
     initiated: Boolean
@@ -32,6 +35,14 @@ export default {
   methods: {
     changeInitiated() {
       this.$emit("toggleInitiated");
+    }
+  },
+  computed: mapState({
+    isMobile: state => state.mobile.isMobile
+  }),
+  watch: {
+    isMobile: function() {
+      console.log(this.$el);
     }
   }
 };
@@ -58,7 +69,7 @@ nav#primary ul {
       justify-content: center;
       align-items: center;
       font-size: 1.2em;
-      transition: all 0.15s ease-in-out;
+      transition: background-color 0.15s ease-in-out;
       &:hover {
         background-color: $lightColor;
         color: black;
@@ -79,6 +90,9 @@ nav#primary ul {
     }
   }
 }
+#mobile-button {
+  display: none;
+}
 
 @media only screen and (max-width: 1400px) {
   nav#primary {
@@ -92,6 +106,8 @@ nav#primary ul {
 
 @media only screen and (max-width: 550px) {
   nav#primary ul {
+    visibility: hidden;
+    position: absolute;
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -108,6 +124,10 @@ nav#primary ul {
 
   #logo-item a img {
     width: 100vw;
+  }
+
+  #mobile-button {
+    display: flex;
   }
 }
 </style>

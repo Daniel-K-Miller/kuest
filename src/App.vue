@@ -22,6 +22,7 @@
 import LandingContent from "@/components/LandingContent.vue";
 import CharacterCreation from "@/components/CharacterCreation.vue";
 import GameScreen from "@/components/GameScreen.vue";
+import store from "./store";
 export default {
   components: {
     LandingContent,
@@ -121,6 +122,26 @@ export default {
       });
       return array;
     }
+  },
+  created() {
+    // stored variable mobile vuex state set
+    const setMobile = function() {
+      if (window.innerWidth >= store.state.mobile.maxWidth) {
+        store.commit("setMobile", { isMobile: false });
+      } else {
+        store.commit("setMobile", { isMobile: true });
+      }
+    };
+
+    // initial app mobile state
+    setMobile();
+    // event listener attached
+    window.addEventListener("resize", () => {
+      setMobile();
+    });
+  },
+  destroyed() {
+    window.removeEventListener("resize");
   }
 };
 </script>
