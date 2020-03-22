@@ -82,12 +82,32 @@ nav#primary ul {
 
 @media only screen and (max-width: 1400px) {
   nav#primary {
-    background-color: $secondaryColor;
+    background-color: $tertiaryColor;
   }
 
   #logo-item a img {
-    filter: invert(4%) sepia(15%) saturate(1433%) hue-rotate(178deg)
-      brightness(90%) contrast(101%);
+    filter: brightness(0) invert(0.75);
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  nav#primary ul {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    li {
+      height: auto;
+      flex: 1;
+      font-size: 1.2em;
+      a {
+        width: 100%;
+      }
+    }
+  }
+
+  #logo-item a img {
+    width: 100vw;
   }
 }
 </style>
