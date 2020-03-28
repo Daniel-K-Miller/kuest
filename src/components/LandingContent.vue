@@ -1,8 +1,8 @@
 <template>
   <!-- Starting Screen -->
   <nav id="primary">
-    <button id="mobile-button" @click="toggleMobileNav">Menu</button>
-    <ul class="fade">
+    <button id="mobile-button" @click="toggleMobileNav">MENU</button>
+    <ul class="">
       <li v-if="isMobile === false" id="logo-item">
         <router-link to="/about" draggable="false">
           <img src="@/assets/title/title.svg" id="kuest-title" draggable="false" />
@@ -46,27 +46,28 @@ export default {
     changeInitiated() {
       this.$emit("toggleInitiated");
     },
+    initMobileNav() {
+      const nav = this.$el.getElementsByTagName("ul")[0];
+      this.isMobileNavActive = false;
+      this.hideElement(nav, this.isMobileNavActive);
+    },
     toggleMobileNav() {
-      const ul = this.$el.getElementsByTagName("ul")[0];
-      // changing mobile nav state
-      if (this.isMobileNavActive === true && this.isMobile === true) {
-        this.isMobileNavActive = !this.isMobileNavActive;
-        ul.classList.add("show");
-        ul.classList.remove("hide");
-        return;
-      }
+      const nav = this.$el.getElementsByTagName("ul")[0];
 
       this.isMobileNavActive = !this.isMobileNavActive;
-
       if (this.isMobileNavActive === true) {
-        console.log(ul);
-        ul.classList.add("show");
-        ul.classList.remove("hide");
+        this.showElement(nav, this.isMobileNavActive);
       } else {
-        console.log(ul);
-        ul.classList.remove("show");
-        ul.classList.add("hide");
+        this.hideElement(nav, this.isMobileNavActive);
       }
+    },
+    hideElement(el) {
+      el.classList.add("hide");
+      el.classList.remove("show");
+    },
+    showElement(el) {
+      el.classList.add("show");
+      el.classList.remove("hide");
     }
   },
   computed: mapState({
@@ -75,18 +76,14 @@ export default {
   watch: {
     isMobile: function() {
       if (this.isMobile === true) {
-        this.toggleMobileNav();
+        this.initMobileNav();
       }
     }
   },
   mounted() {
     const ul = this.$el.getElementsByTagName("ul")[0];
     if (this.isMobile === true) {
-      if (this.isMobileNavActive === true) {
-        ul.classList.add("hide");
-      } else {
-        ul.classList.add("hide");
-      }
+      ul.classList.add("hide");
     }
   }
 };
@@ -150,8 +147,8 @@ nav#primary ul {
 
 @media only screen and (min-width: 551px) and (max-width: 1000px) {
   nav#primary ul {
-    height: 80px;
-
+    height: 60px;
+    width: 100%;
     #logo-item a {
       height: 100%;
       padding: 0 20px;
@@ -172,6 +169,7 @@ nav#primary ul {
     flex-direction: column;
     height: 100vh;
     width: 100vw;
+    transition: opacity 0.25s ease-in-out;
     li {
       height: auto;
       flex: 1;
@@ -188,21 +186,35 @@ nav#primary ul {
 
   #mobile-button {
     display: flex;
+    justify-content: center;
+    align-items: center;
     z-index: 5;
     cursor: pointer;
     position: absolute;
-    right: 0;
+    font-size: 1em;
+    font-weight: bold;
+    top: 10px;
+    right: 10px;
     background-color: $primaryColor;
     border: none;
-    padding: 1em;
-    border-radius: 10px;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    text-align: center;
+    margin: 0 auto;
+    outline: none;
+    &:hover {
+      background-color: $accentColor;
+    }
   }
 
   .show {
+    opacity: 1;
     visibility: visible;
   }
 
   .hide {
+    opacity: 0;
     visibility: hidden;
   }
 }
