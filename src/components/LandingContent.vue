@@ -1,10 +1,16 @@
 <template>
   <!-- Starting Screen -->
   <nav id="primary">
-    <ul>
-      <li id="logo-item">
+    <button id="mobile-button" @click="toggleMobileNav">Menu</button>
+    <ul class="fade">
+      <li v-if="isMobile === false" id="logo-item">
         <router-link to="/about" draggable="false">
           <img src="@/assets/title/title.svg" id="kuest-title" draggable="false" />
+        </router-link>
+      </li>
+      <li v-else-if="isMobile === true">
+        <router-link to="/about" draggable="false">
+          <router-link to="/about">Home</router-link>
         </router-link>
       </li>
       <li>
@@ -20,7 +26,6 @@
         <router-link to="/about">Social</router-link>
       </li>
     </ul>
-    <button id="mobile-button">toggle</button>
   </nav>
   <!-- <router-view :initiated="initiated" @changeInitiated="changeInitiated"/> -->
 </template>
@@ -32,9 +37,36 @@ export default {
   props: {
     initiated: Boolean
   },
+  data() {
+    return {
+      isMobileNavActive: false
+    };
+  },
   methods: {
     changeInitiated() {
       this.$emit("toggleInitiated");
+    },
+    toggleMobileNav() {
+      const ul = this.$el.getElementsByTagName("ul")[0];
+      // changing mobile nav state
+      if (this.isMobileNavActive === true && this.isMobile === true) {
+        this.isMobileNavActive = !this.isMobileNavActive;
+        ul.classList.add("show");
+        ul.classList.remove("hide");
+        return;
+      }
+
+      this.isMobileNavActive = !this.isMobileNavActive;
+
+      if (this.isMobileNavActive === true) {
+        console.log(ul);
+        ul.classList.add("show");
+        ul.classList.remove("hide");
+      } else {
+        console.log(ul);
+        ul.classList.remove("show");
+        ul.classList.add("hide");
+      }
     }
   },
   computed: mapState({
@@ -42,7 +74,19 @@ export default {
   }),
   watch: {
     isMobile: function() {
-      console.log(this.$el);
+      if (this.isMobile === true) {
+        this.toggleMobileNav();
+      }
+    }
+  },
+  mounted() {
+    const ul = this.$el.getElementsByTagName("ul")[0];
+    if (this.isMobile === true) {
+      if (this.isMobileNavActive === true) {
+        ul.classList.add("hide");
+      } else {
+        ul.classList.add("hide");
+      }
     }
   }
 };
@@ -104,9 +148,25 @@ nav#primary ul {
   }
 }
 
+@media only screen and (min-width: 551px) and (max-width: 1000px) {
+  nav#primary ul {
+    height: 80px;
+
+    #logo-item a {
+      height: 100%;
+      padding: 0 20px;
+    }
+  }
+  nav#primary ul li {
+    height: auto;
+    #kuest-title {
+      width: 100%;
+    }
+  }
+}
+
 @media only screen and (max-width: 550px) {
   nav#primary ul {
-    visibility: hidden;
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -128,6 +188,22 @@ nav#primary ul {
 
   #mobile-button {
     display: flex;
+    z-index: 5;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    background-color: $primaryColor;
+    border: none;
+    padding: 1em;
+    border-radius: 10px;
+  }
+
+  .show {
+    visibility: visible;
+  }
+
+  .hide {
+    visibility: hidden;
   }
 }
 </style>
