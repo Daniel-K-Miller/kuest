@@ -141,7 +141,7 @@ img {
 }
 
 .bottom-margin {
-  margin-bottom: 90px;
+  margin-bottom: 75px;
   padding-bottom: 0;
 }
 
