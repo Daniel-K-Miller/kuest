@@ -132,32 +132,33 @@ img {
 }
 
 .top-margin {
-  margin-top: 150px;
+  padding-top: 75px;
+}
+.top-margin::before {
+  content: "";
+  display: block;
+  height: 0px;
 }
 
 .bottom-margin {
   margin-bottom: 90px;
-  padding-bottom: 10px;
+  padding-bottom: 0;
 }
 
 .bottom-margin::after {
   content: "";
   display: block;
-  height: 100%;
+  height: 75px;
   width: 100%;
   position: absolute;
   right: 0;
   left: 0;
-  bottom: -20%;
-  transform: skewY(-1.5deg);
+  bottom: -75px;
   transform-origin: 100;
   z-index: -1;
 }
 
 @media only screen and (max-width: 900px) {
-  .top-margin {
-    margin-top: 200px;
-  }
   .tile-container {
     flex-direction: column;
     .text-container {

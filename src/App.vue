@@ -1,33 +1,13 @@
 <template>
-  <div id="app">
-    <!-- Starting Screen -->
-    <LandingContent
-      v-if="initiated === false"
-      :initiated="initiated"
-      @toggleInitiated="toggleInitiated"
-    />
-    <!-- Character Creation -->
-    <CharacterCreation
-      v-if="initiated === true && player.level === 0"
-      :playerData="player"
-      :defaultAttributes="defaultAttributes"
-      :shortAtr="shortAtr"
-    />
-    <!-- Post characert-creation -->
-    <GameScreen v-if="initiated === true && player.level === 1" :playerData="player" />
-  </div>
+  <Home />
 </template>
 
 <script>
-import LandingContent from "@/components/LandingContent.vue";
-import CharacterCreation from "@/components/CharacterCreation.vue";
-import GameScreen from "@/components/GameScreen.vue";
+import Home from "@/views/Home.vue";
 import store from "./store";
 export default {
   components: {
-    LandingContent,
-    CharacterCreation,
-    GameScreen
+    Home
   },
   data() {
     return {
@@ -159,6 +139,7 @@ export default {
 * {
   margin: 0;
   padding: 0;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 body {
   background-color: $darkColor;

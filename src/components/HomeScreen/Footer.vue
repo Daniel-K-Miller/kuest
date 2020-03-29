@@ -4,7 +4,7 @@
       <div class="links">
         <h2>Links</h2>
         <ul>
-          <li v-for="link in json.links" :key="link.title">
+          <li v-for="link in socialData.links" :key="link.title">
             <a :href="link.href">{{ link.title }}</a>
           </li>
         </ul>
@@ -12,7 +12,7 @@
       <div class="social">
         <h2>Social</h2>
         <ul>
-          <li v-for="item in json.social" :key="item.title">
+          <li v-for="item in socialData.social" :key="item.title">
             <a href="www.google.com">
               <img
                 :src="require(`@/assets/social/${item.image}`)"
@@ -31,12 +31,12 @@
 </template>
 
 <script>
-import json from "../../../docs/footer.json";
+import socialData from "@/data/footer/social.json";
 
 export default {
   data() {
     return {
-      json
+      socialData
     };
   }
 };
