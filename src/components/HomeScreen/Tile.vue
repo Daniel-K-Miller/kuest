@@ -74,10 +74,14 @@ export default {
   padding: 0px 0 90px 0;
   z-index: 1;
   padding-bottom: 150px;
+  color: $lightColor;
   h1,
   p {
     width: 30vw;
     padding: 0 30px;
+  }
+  p {
+    font-size: 1.3em;
   }
 }
 .tile-container:before {
@@ -99,6 +103,8 @@ export default {
   flex-direction: column;
   justify-content: center;
   margin-left: 0;
+  z-index: 10;
+  text-shadow: 2px 2px $darkColor;
 }
 .heading {
   text-align: start;
@@ -116,19 +122,19 @@ img {
 .primary-color,
 .primary-color::before,
 .primary-color:after {
-  background-color: lighten($color: $darkColor, $amount: 10);
+  background-color: lighten($color: $darkColor, $amount: 2);
 }
 
 .secondary-color,
 .secondary-color::before,
 .secondary-color:after {
-  background-color: lighten($color: $darkColor, $amount: 15);
+  background-color: lighten($color: $darkColor, $amount: 3);
 }
 
 .tertiary-color,
 .tertiary-color::before,
 .tertiary-color:after {
-  background-color: lighten($color: $darkColor, $amount: 20);
+  background-color: lighten($color: $darkColor, $amount: 4);
 }
 
 .top-margin {
@@ -156,6 +162,26 @@ img {
   bottom: -75px;
   transform-origin: 100;
   z-index: -1;
+}
+
+@media only screen and (max-width: 1400px) {
+  .primary-color,
+  .primary-color::before,
+  .primary-color:after {
+    background-color: darken($color: $tertiaryColor, $amount: 5);
+  }
+
+  .secondary-color,
+  .secondary-color::before,
+  .secondary-color:after {
+    background-color: darken($color: $tertiaryColor, $amount: 10);
+  }
+
+  .tertiary-color,
+  .tertiary-color::before,
+  .tertiary-color:after {
+    background-color: darken($color: $tertiaryColor, $amount: 15);
+  }
 }
 
 @media only screen and (max-width: 900px) {
@@ -199,7 +225,7 @@ img {
 @media only screen and (max-width: 350px) {
   .tile-container {
     img {
-      width: 100vw;
+      width: 100%;
       border-radius: 0;
     }
     .text-container,

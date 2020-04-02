@@ -28,6 +28,7 @@ export default {
 
 .highlight {
   position: relative;
+  display: flex;
 }
 
 .highlight button {
@@ -41,6 +42,7 @@ export default {
 
 .highlight #background-image {
   width: 100%;
+  opacity: 0.2;
   left: 0;
   z-index: -1;
   filter: blur(2px);
@@ -49,14 +51,13 @@ export default {
 
 .highlight #main-image {
   position: absolute;
-  width: 700px;
+  height: 100%;
   z-index: 1;
   top: 0;
   bottom: 0;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  margin-top: -2px;
 }
 
 .highlight #background-image {
@@ -68,7 +69,6 @@ export default {
     width: 70vw;
     border: none;
     z-index: 1;
-    margin-top: -2px;
   }
 
   .highlight #background-image {
@@ -86,7 +86,7 @@ export default {
 
 @media only screen and (max-width: 500px) {
   .highlight #main-image {
-    width: 100vw;
+    width: 100%;
     border: none;
   }
 

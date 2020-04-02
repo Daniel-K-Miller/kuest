@@ -165,11 +165,11 @@ nav#primary ul {
 
 @media only screen and (max-width: 550px) {
   nav#primary ul {
-    position: absolute;
+    position: fixed;
     display: flex;
     flex-direction: column;
     height: 100vh;
-    width: 100vw;
+    width: 100%;
     transition: opacity 0.25s ease-in-out;
     li {
       height: auto;
@@ -191,7 +191,7 @@ nav#primary ul {
     align-items: center;
     z-index: 5;
     cursor: pointer;
-    position: absolute;
+    position: fixed;
     font-size: 1em;
     font-weight: bold;
     top: 10px;
