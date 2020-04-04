@@ -1,5 +1,18 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <Block />
+    <Footer />
   </div>
 </template>
+
+<script>
+import Footer from "@/components/Footer.vue";
+import Block from "@/components/About/Block.vue";
+
+export default {
+  components: {
+    Block,
+    Footer
+  }
+}
+</script>

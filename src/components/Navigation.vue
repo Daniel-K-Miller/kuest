@@ -4,13 +4,13 @@
     <button id="mobile-button" @click="toggleMobileNav">MENU</button>
     <ul class="">
       <li v-if="isMobile === false" id="logo-item">
-        <router-link to="/about" draggable="false">
+        <router-link to="/" draggable="false">
           <img src="@/assets/title/title.svg" id="kuest-title" draggable="false" />
         </router-link>
       </li>
       <li v-else-if="isMobile === true">
-        <router-link to="/about" draggable="false">
-          <router-link to="/about">Home</router-link>
+        <router-link to="/" draggable="false">
+          <router-link to="/">Home</router-link>
         </router-link>
       </li>
       <li>

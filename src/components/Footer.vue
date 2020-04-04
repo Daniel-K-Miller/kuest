@@ -43,7 +43,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../SCSS/_variables.scss";
+@import "../SCSS/_variables.scss";
 
 footer {
   width: 100%;

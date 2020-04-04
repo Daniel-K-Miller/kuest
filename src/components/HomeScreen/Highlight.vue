@@ -2,16 +2,18 @@
   <div class="highlight">
     <img id="background-image"
       src="https://designshack.net/wp-content/uploads/placeholder-image.png"
+      draggable="false"
     />
     <img id="main-image"
       src="https://designshack.net/wp-content/uploads/placeholder-image.png"
+      draggable="false"
     />
     <Button :text="`Play`" :click="event" />
   </div>
 </template>
 
 <script>
-import Button from "./Button";
+import Button from "../Button";
 
 export default {
   components: { Button },

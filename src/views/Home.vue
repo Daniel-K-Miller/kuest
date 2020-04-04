@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <Nav />
     <Highlight />
     <Tile
       v-for="(tile, index) in tileData.tiles"
@@ -17,18 +16,16 @@
 </template>
 
 <script>
-import Nav from "@/components/Navigation.vue";
 import Highlight from "@/components/HomeScreen/Highlight.vue";
 
 import Tile from "@/components/HomeScreen/Tile.vue";
 import tileData from "@/data/home/tiles.json";
 
-import Footer from "@/components/HomeScreen/Footer.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
   name: "home",
   components: {
-    Nav,
     Highlight,
     Tile,
     Footer

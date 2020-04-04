@@ -12,7 +12,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../../SCSS/_variables.scss";
+@import "../SCSS/_variables.scss";
 
 button {
   background-color: lighten($accentColor, 10);
@@ -23,6 +23,8 @@ button {
   border-radius: 5px;
   margin: 10px;
   transition: background-color 0.15s ease-in-out;
+  outline: none;
+  cursor: pointer;
 }
 
 button:hover {
