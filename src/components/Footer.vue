@@ -95,9 +95,12 @@ footer .top-level .social {
 }
 
 footer .bottom-level {
+  display: flex;
+  justify-content: center;
   h3 {
-    font-size: 0.75em;
+    font-size: 0.8rem;
     font-weight: normal;
+    color: lighten($darkColor, 20);
   }
   margin: 1vw 0;
 }
