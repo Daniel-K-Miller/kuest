@@ -3,26 +3,26 @@
   <nav id="primary">
     <button id="mobile-button" @click="toggleMobileNav">MENU</button>
     <ul class="">
-      <li v-if="isMobile === false" id="logo-item">
+      <li v-if="isMobile === false" id="logo-item" @click="toggleMobileNav">
         <router-link to="/" draggable="false">
           <img src="@/assets/title/title.svg" id="kuest-title" draggable="false" />
         </router-link>
       </li>
-      <li v-else-if="isMobile === true">
+      <li v-else-if="isMobile === true" @click="toggleMobileNav">
         <router-link to="/" draggable="false">
           <router-link to="/">Home</router-link>
         </router-link>
       </li>
-      <li>
+      <li @click="toggleMobileNav">
         <router-link to="/about">About</router-link>
       </li>
-      <li>
+      <li @click="toggleMobileNav">
         <router-link to="/about">News</router-link>
       </li>
-      <li>
+      <li @click="toggleMobileNav">
         <router-link to="/about">Updates</router-link>
       </li>
-      <li>
+      <li @click="toggleMobileNav">
         <router-link to="/about">Social</router-link>
       </li>
     </ul>
@@ -52,6 +52,7 @@ export default {
       this.hideElement(nav, this.isMobileNavActive);
     },
     toggleMobileNav() {
+      console.log("hello!");
       const nav = this.$el.getElementsByTagName("ul")[0];
 
       this.isMobileNavActive = !this.isMobileNavActive;
